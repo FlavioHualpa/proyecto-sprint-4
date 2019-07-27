@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('first_name', 50)->nullable(false);
             $table->string('last_name', 50)->nullable(false);
             $table->string('email', 80)->nullable(false)->unique();
-            $table->bigInteger('pais_id')->nullable(false)->unsigned();
+            $table->bigInteger('country_id')->nullable(false)->unsigned();
             $table->date('birth_date')->nullable(false);
             $table->char('sex', 1)->nullable(false);
             $table->string('password', 255)->nullable(false);
@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
-            $table->foreign('pais_id')->references('id')->on('paises');
+            $table->foreign('country_id')->references('id')->on('countries');
         });
     }
 

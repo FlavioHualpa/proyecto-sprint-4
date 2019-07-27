@@ -1,0 +1,143 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/*
+#encabezado h1 {
+  background-color: #304878;
+  font-family: 'Pacifico', regular;
+  font-size: 72px;
+  text-align: center;
+  color: White;
+  padding-bottom: 40px;
+  padding-top: 20px;
+}
+*/
+
+.banner {
+  background-image: url(../img/people-books-banner.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  margin: 0 auto;
+  width: 100%;
+  height: 300px;
+  display: none;
+}
+
+.tituloSection {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.tituloSection h3 {
+  width: 100%;
+  /* height: 60px; */
+  border-top: 1px solid #304878;
+  border-bottom: 1px solid #304878;
+  /* margin-top: 20px; */
+  /* padding-top: 10px; */
+  /* padding-bottom: 10px; */
+  /* background-color: rgba(255, 255, 255, 0.5); */
+  background-color: rgba(0, 0, 0, 0.15);
+  font-family: 'Pacifico', serif;
+  font-size: 36px;
+  color: #304878;
+}
+
+.viñeta {
+  width: 40%;
+  margin: 0 auto;
+  border-top: 2px solid #304878;
+}
+
+.separador {
+  height: 50px;
+}
+
+.libro1 {
+  width: 90%;
+  margin: 5%;
+}
+
+.libro2 {
+  width: 90%;
+  margin: 5%;
+}
+
+.libro3 {
+  width: 90%;
+  margin: 5%;
+}
+
+@media (min-width: 768px)
+{
+  #contenedor {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .separador {
+    display: none;
+  }
+
+  .banner {
+    display: block;
+  }
+
+  #footer nav ul li:nth-child(2) {
+    display: block;
+  }
+}
+
+/*
+#encabezado nav ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  height: 60px;
+  border-top: 1px solid #304878;
+  border-bottom: 1px solid #304878;
+  background-color: rgba(0, 0, 0, 0.15);
+
+}
+
+#encabezado nav ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  cursor: pointer;
+}
+
+#encabezado nav ul li div {
+  font-family: 'Lora', serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: #304878;
+  transition: 0.2s;
+}
+
+#encabezado nav ul li:hover div {
+  font-size: 22px;
+}
+
+#encabezado nav ul li div i {
+  margin-right: 5px;
+}
+
+#encabezado nav ul li div a {
+  color: #304878;
+  font-weight: bold;
+  text-decoration: none;
+}
+*/

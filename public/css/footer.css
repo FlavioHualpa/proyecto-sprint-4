@@ -1,0 +1,42 @@
+#footer nav ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style-type: none;
+  text-decoration: none;
+  border-top: 1px solid #676745;
+  width: 100%;
+  color: #304878;
+  padding-top: 10px;
+}
+
+#footer nav ul li {
+  text-decoration: none;
+  font-family: 'Lora', serif;
+  font-size: 18px;
+  color: #304878;
+}
+
+#footer nav ul li:nth-child(2) {
+  display: none;
+}
+
+#footer nav ul li a {
+  text-decoration: none;
+  color: #304878;
+}
+
+#footer nav ul li .links {
+  font-size: 30px;
+  color: #304878;
+}
+
+#footer nav p {
+  font-family: 'Lora', serif;
+  font-size: 14px;
+  color: #676745;
+  color: #606060;
+  padding-top: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}

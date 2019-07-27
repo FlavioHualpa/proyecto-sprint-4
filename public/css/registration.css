@@ -1,0 +1,234 @@
+#panel-form {
+  padding: 20px;
+  margin: 40px 10px;
+  max-width: 600px;
+  background-color: rgba(0, 24, 48, 0.2);
+  border-radius: 6px;
+}
+
+.fondoLogYReg {
+  background-image: url(../img/retina_wood_@2X.png);
+  display: flex;
+  justify-content: center;
+}
+
+.login {
+  width: 100%;
+}
+
+.login fieldset {
+  text-decoration: none;
+  font-family: 'Lora', serif;
+  font-size: 24px;
+  width: 90%;
+  color: #676745;
+  margin: 20px auto;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  border-left: none;
+  border-right: none;
+}
+
+.login fieldset legend {
+  color: #202020;
+}
+
+.login fieldset p label {
+  font-size: 18px;
+  color: #202020;
+}
+
+.login fieldset p input {
+  margin: 0 auto 10px auto;
+  width: 100%;
+  text-align: center;
+  font-family: 'Lora', serif;
+  font-size: 30px;
+  color: #676745;
+}
+
+.login fieldset p input[type="submit"] {
+  margin-top: 20px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  width: auto;
+  font-size: 26px;
+  cursor: pointer;
+}
+.login fieldset p input[type="reset"] {
+  margin-top: 20px;
+  border: none;
+  border-radius: 6px;
+  width: auto;
+  font-size: 26px;
+}
+.login fieldset p input[type="submit"]:hover {
+  background-color: #0090ff;
+  color: white;
+}
+
+#link_hipervinculo {
+  text-decoration: none;
+  color: #304878;
+}
+
+.error-login {
+  font-size: 14px;
+  color: #c00000;
+  margin-top: -6px;
+}
+
+.error-usuario {
+  font-size: 16px;
+  color: #c00000;
+  margin-top: 12px;
+  margin-bottom: 6px;
+}
+
+.botones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+#boton {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+.registration {
+  width: 100%;
+}
+
+.texto-registration {
+  font-family: 'Lora', serif;
+  font-size: 14px;
+  color: black;
+}
+
+#recordar {
+width: 10%;
+}
+
+.error-regist {
+  font-size: 14px;
+  color: #c00000;
+  margin-top: -6px;
+}
+
+.error-usuario {
+  font-size: 16px;
+  color: #c00000;
+  margin-top: 12px;
+  margin-bottom: 6px;
+}
+
+.registration fieldset {
+  text-decoration: none;
+  font-family: 'Lora', serif;
+  font-size: 24px;
+  color: #676745;
+  margin: 20px auto;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  border-left: none;
+  border-right: none;
+}
+
+.registration fieldset legend {
+  color: #202020;
+}
+
+.registration fieldset p label, .terminos, .sexo_fem, .sexo_masc, label[for="avatar_button"] {
+  font-size: 18px;
+  color: #202020;
+}
+
+.avatar_button {
+  text-align: center;
+}
+
+/*EMPIEZA ACA: esto se agrega para que no se vea el texto que dice "debe subir el archivo" y el boton de examinar, pero no está funcionando*/
+
+.registration fieldset p input[type="file"] {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.registration fieldset p label[for="avatar"] {
+  font-size: 20px;
+  color: #676745;
+  background-color: white;
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px 10px;
+  text-transform: uppercase;
+  width: fit-content;
+  text-align: center;
+  border-radius: 6px;
+  margin: 30px 0px 20px 0px;
+}
+
+.registration fieldset p label[for="avatar"]:hover {
+  background-color: #c0c0c0;
+}
+
+/*TERMINA ACA: esto se agrega para que no se vea el texto que dice "debe subir el archivo" y el boton de examinar, pero no está funcionando*/
+
+
+.registration fieldset p input,
+.registration fieldset p select {
+  margin: 0 auto 10px auto;
+  width: 100%;
+  text-align: center;
+  font-family: 'Lora', serif;
+  font-size: 30px;
+  color: #676745;
+}
+
+.registration fieldset div input[type="checkbox"] {
+  transform: scale(1.3);
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+.registration fieldset p input[type="submit"],
+.registration fieldset p input[type="reset"] {
+  margin-top: 20px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  width: aut: ;o;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.registration fieldset p input[type="submit"] {
+  background-color: #0060ff;
+  color: white;
+}
+
+.registration fieldset p input[type="submit"]:hover {
+  background-color: #0090ff;
+}
+
+.registration fieldset p input[type="reset"]:hover {
+  background-color: #c0c0c0;
+}
+
+.registration fieldset legend p .sexo {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.terminos {
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+}

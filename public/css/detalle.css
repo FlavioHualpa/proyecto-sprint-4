@@ -1,0 +1,134 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.ruta_libro {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 16px;
+  color: #304878;
+  padding-bottom: 40px;
+  padding-top: 40px;
+  margin-left: 20%;
+}
+
+.detalle_principal {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  margin-left: 15%;
+  margin-right: 15%;
+  padding-bottom: 40px;
+}
+
+.detalle_imagen {
+  justify-content: center;
+  width: 80%;
+}
+
+.detalle_lateral {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 80%;
+}
+
+.detalle_lateral h3 {
+  font-family: 'Pacifico', cursive;
+  font-size: 32px;
+  color: #304878;
+}
+
+.detalle_lateral h5 {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 24px;
+  color: #304878;
+}
+
+.detalle_lateral h6, .datos_detallados h6 {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 20px;
+  color: #0090ff;
+}
+
+.detalle_cantidad p {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 24px;
+  color: #0090ff;
+}
+
+.detalle_cantidad  input[type="number"] {
+  margin: 5px auto 10px auto;
+  padding-left: 5px;
+  text-align: center
+  box-sizing: border-box;
+  border-radius: 3px;
+  border: 1px solid #c9c9c9;
+  font-size: 18px;
+  color: #304878;
+}
+
+.detalle_lateral p {
+font-family: 'Mali', cursive;
+font-size: 14px;
+text-align: justify;
+color: #304878;
+}
+
+.costos_envio, .compra {
+  padding: 10px;
+  box-sizing: content-box;
+  border: none;
+  border-radius: 6px;
+  width: auto;
+  font-size: 14px;
+  font-family: 'Mali', cursive;
+  cursor: pointer;
+  text-align: left;
+  color: #304878;
+
+}
+
+.viñeta {
+  width: 100%;
+  margin: 0 auto;
+  border-top: 2px solid #304878;
+}
+
+.datos_detallados {
+  margin-left: 20%;
+}
+
+.datos_detallados ul {
+  margin-top: 15px;
+  margin-bottom: 20px;
+  list-style-type: none;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  color: #304878;
+}
+
+
+.acerca_sec {
+  padding-bottom: 20px;
+  margin: auto 15%;
+}
+
+.acerca_sec h2, h3, h4 {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 20px;
+  color: #0090ff;
+  margin-top: 2%;
+}
+
+.acerca_sec p, ul, li {
+  font-family: 'Mali', cursive;
+  text-align: left;
+  color: #304878;
+}
