@@ -14,6 +14,7 @@ class CreateBookCartTable extends Migration
     public function up()
     {
         Schema::create('book_cart', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->bigInteger('book_id')->nullable(false)->unsigned();
             $table->bigInteger('cart_id')->nullable(false)->unsigned();

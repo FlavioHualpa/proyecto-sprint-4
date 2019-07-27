@@ -14,6 +14,7 @@ class CreateBookPurchaseTable extends Migration
     public function up()
     {
         Schema::create('book_purchase', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->bigInteger('purchase_id')->nullable(false)->unsigned();
             $table->bigInteger('book_id')->nullable(false)->unsigned();
