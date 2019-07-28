@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->date('birth_date')->nullable(false);
             $table->char('sex', 1)->nullable(false);
             $table->string('password', 255)->nullable(false);
-            $table->string('avatar_url', 255);
+            $table->string('avatar_url', 255)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

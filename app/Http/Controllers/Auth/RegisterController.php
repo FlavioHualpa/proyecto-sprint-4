@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Country;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -49,8 +50,13 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'country_id' => ['required', 'exists:countries,id'],
+            'birth_date' => ['required', 'before:-18 years'],
+            'sex' => ['required', 'in:f,m'],
+            'avatar_url' => ['file', 'image'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -63,10 +69,32 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+      if (isset($data['avatar_url'])) {
+        $url = $data['avatar_url']->store('public');
+      }
+      else {
+        $url = null;
+      }
+
         return User::create([
-            'name' => $data['name'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
             'email' => $data['email'],
+            'country_id' => $data['country_id'],
+            'birth_date' => $data['birth_date'],
+            'sex' => $data['sex'],
+            'avatar_url' => $url,
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function showRegistrationForm()
+    {
+      $countries = Country::orderBy('name')->get();
+
+      return view(
+        'auth.register',
+        [ 'countries' => $countries ]
+      );
     }
 }

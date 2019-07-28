@@ -60,7 +60,7 @@
             <i class="fas fa-sign-in-alt"></i>
             ingresar
           </a>
-          <a href="/registration" class="user-register">
+          <a href="/register" class="user-register">
             <i class="fas fa-user-plus"></i>
             crear cuenta
           </a>
@@ -101,7 +101,7 @@
     </header>
     <header id="encabezado">
       <h1>¿Qué Leo?</h1>
-      <h3>Un especio para descubrir</h3>
+      <h3>Un espacio para descubrir</h3>
     </header>
 
     @yield('content')

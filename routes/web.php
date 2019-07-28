@@ -12,32 +12,7 @@
 */
 
 Route::get('/', function () {
-    $genres = [
-      [
-        'id' => 1,
-        'name' => 'artes',
-      ],
-      [
-        'id' => 2,
-        'name' => 'ciencia',
-      ],
-      [
-        'id' => 3,
-        'name' => 'economía',
-      ],
-      [
-        'id' => 4,
-        'name' => 'infantiles',
-      ],
-      [
-        'id' => 5,
-        'name' => 'novelas',
-      ],
-      [
-        'id' => 6,
-        'name' => 'turismo',
-      ]
-    ];
+    $genres = App\Genre::orderBy('name')->get();
 
     $novedades = [
       [
@@ -94,3 +69,7 @@ Route::get('/', function () {
       ]
     );
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
