@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
   protected $table = 'books';
+  protected $fillable = [
+    'title', 'total_pages', 'price', 'cover_img_url', 'year_published',
+    'genre_id', 'author_id', 'publisher_id', 'language_id', 'ranking',
+    'resena', 'isbn', 'created_at', 'updated_at'
+  ];
 
   public function genre()
   {
@@ -36,5 +41,10 @@ class Book extends Model
   public function carts()
   {
     return $this->belongsToMany(Cart::class);
+  }
+
+  public function favoriteOfUsers()
+  {
+    return $this->belongsToMany(User::class, 'favorites');
   }
 }

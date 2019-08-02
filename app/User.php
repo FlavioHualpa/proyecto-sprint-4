@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'country_id', 'birth_date', 'sex', 'avatar_url', 'password',
+        'first_name', 'last_name', 'email', 'country_id', 'birth_date', 'sex', 'avatar_url', 'password', 'role'
     ];
 
     /**
@@ -38,7 +38,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function country() {
+    public function country()
+    {
       return $this->belongsTo(Country::class);
+    }
+
+    public function favorites()
+    {
+      return $this->belongsToMany(Book::class, 'favorites');
+    }
+
+    public function carts()
+    {
+      return $this->hasMany(Cart::class);
+    }
+
+    public function purchases()
+    {
+      return $this->hasMany(Purchase::class);
     }
 }

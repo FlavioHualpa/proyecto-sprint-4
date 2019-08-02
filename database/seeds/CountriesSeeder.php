@@ -16,7 +16,7 @@ class CountriesSeeder extends Seeder
 
         foreach ($datos as $codigo => $pais) {
           DB::table('countries')->insert(
-            [ 'id' => null, 'name' => $pais ]
+            [ 'id' => null, 'name' => $pais, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s') ]
           );
         }
     }

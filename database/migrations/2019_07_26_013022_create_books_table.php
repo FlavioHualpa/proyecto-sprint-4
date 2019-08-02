@@ -26,7 +26,7 @@ class CreateBooksTable extends Migration
       $table->bigInteger('publisher_id')->nullable(false)->unsigned();
       $table->bigInteger('language_id')->nullable(false)->unsigned();
       $table->integer('ranking')->nullable(false)->unsigned();
-      $table->string('resena', 255)->nullable(false);
+      $table->text('resena')->nullable(false);
       $table->bigInteger('isbn')->nullable(false)->unsigned();
       $table->timestamps();
       $table->foreign('genre_id')->references('id')->on('genres');

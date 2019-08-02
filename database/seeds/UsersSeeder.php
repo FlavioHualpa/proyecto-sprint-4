@@ -21,6 +21,8 @@ class UsersSeeder extends Seeder
             'sex' => 'm',
             'password' => 'password',
             'role' => 'admin',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
           ]
         );
     }

@@ -16,7 +16,7 @@ class CreatePublishersTable extends Migration
         Schema::create('publishers', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
-            $table->string('publisher', 100)->nullable(false);
+            $table->string('name', 100)->nullable(false);
             $table->timestamps();
         });
     }
