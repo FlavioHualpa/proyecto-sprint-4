@@ -73,3 +73,17 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/genres', 'GenresController@index');
+Route::get('/genres', 'GenresController@show');
+
+
+Route::get('/languages', 'LanguagesController@index');
+
+Route::get('/authors', 'AuthorsController@index');
+
+Route::get('/publishers', 'PublishersController@index');
+
+Route::get('/books', 'BooksController@index');
+
+Route::get('/purchases', 'PurchasesController@index');
