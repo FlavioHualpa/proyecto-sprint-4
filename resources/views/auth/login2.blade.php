@@ -1,15 +1,49 @@
-@extends('layouts.main')
+@extends('layouts.header')
 
 @section('styles')
-<link rel="dns-prefetch" href="//fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 <link href="{{ asset('css/header.css') }}" rel="stylesheet">
-<link href="{{ asset('css/footer.css') }}" rel="stylesheet">
+<link href="{{ asset('css/registration.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
 <div class="container">
+  <div class="fondoLogYReg">
+    <div id="panel-form">
+      <p class="texto-registration">¿No estás registrado? Ingresá tus datos en este <a href="{{ route('register') }}" id="link_hipervinculo">link</a></p>
+      <p class="error-usuario"><?= $errores['login'] ?? '' ?></p>
+      <form class="login" action="{{ route('login') }}" method="post">
+        @csrf
+        <fieldset>
+          <legend>Ingresá tus datos</legend>
+          <p>
+            <label for="email">Email</label>
+            <input id="email" type="text" name="email" value="{{ old('email') }}" placeholder="user@email.com">
+            @error('email')
+            <p class="error-login">{{ $message }}</p>
+            @enderror
+          </p>
+          <p>
+            <label for="pass">Contraseña</label>
+            <input id="pass" type="password" name="password" value="{{ old('password') }}" placeholder="Ingresar Contraseña">
+            @error('password')
+            <p class="error-login">{{ $message }}</p>
+            @enderror
+          </p>
+          <p>
+            <input type="checkbox" name="recordar" value="si" id="recordar" {{ old('recordar') ? 'checked' : '' }}>
+            <label for="recordar">Recordarme</label>
+          </p>
+          <div class="botones">
+            <p>
+              <input id="boton" type="submit" value="INGRESAR">
+            </p>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  <!--
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -77,5 +111,6 @@
             </div>
         </div>
     </div>
+  -->
 </div>
 @endsection
