@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar_url', 255)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
+            $table->string('role')->default('customer');
             $table->timestamps();
             $table->foreign('country_id')->references('id')->on('countries');
         });
