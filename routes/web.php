@@ -11,64 +11,65 @@
 |
 */
 
-Route::get('/', function () {
-    $genres = App\Genre::orderBy('name')->get();
-
-    $novedades = [
-      [
-        'id' => 1,
-        'title' => 'Luciérnagas en frascos',
-        'cover_img_url' => 'mr_luciernagas.png',
-        'price' => 735.0,
-      ],
-
-      [
-        'id' => 2,
-        'title' => 'Templanza (Irma)',
-        'cover_img_url' => 'js_templanza.png',
-        'price' => 735.0,
-      ],
-
-      [
-        'id' => 3,
-        'title' => 'La muerte del padre',
-        'cover_img_url' => 'kok_lamuerte.png',
-        'price' => 735.0,
-      ],
-    ];
-
-    $masVendidos = [
-      [
-        'id' => 1,
-        'title' => 'Luciérnagas en frascos',
-        'cover_img_url' => 'mr_luciernagas.png',
-        'price' => 735.0,
-      ],
-
-      [
-        'id' => 2,
-        'title' => 'Templanza (Irma)',
-        'cover_img_url' => 'js_templanza.png',
-        'price' => 735.0,
-      ],
-
-      [
-        'id' => 3,
-        'title' => 'La muerte del padre',
-        'cover_img_url' => 'kok_lamuerte.png',
-        'price' => 735.0,
-      ],
-    ];
-
-    return view(
-      'index',
-      [
-        'genres' => $genres,
-        'novedades' => $novedades,
-        'masVendidos' => $masVendidos,
-      ]
-    );
-});
+Route::get('/', 'BooksController@index');
+// {
+//     $genres = App\Genre::orderBy('name')->get();
+//
+//     $novedades = [
+//       [
+//         'id' => 1,
+//         'title' => 'Luciérnagas en frascos',
+//         'cover_img_url' => 'mr_luciernagas.png',
+//         'price' => 735.0,
+//       ],
+//
+//       [
+//         'id' => 2,
+//         'title' => 'Templanza (Irma)',
+//         'cover_img_url' => 'js_templanza.png',
+//         'price' => 735.0,
+//       ],
+//
+//       [
+//         'id' => 3,
+//         'title' => 'La muerte del padre',
+//         'cover_img_url' => 'kok_lamuerte.png',
+//         'price' => 735.0,
+//       ],
+//     ];
+//
+//     $masVendidos = [
+//       [
+//         'id' => 1,
+//         'title' => 'Luciérnagas en frascos',
+//         'cover_img_url' => 'mr_luciernagas.png',
+//         'price' => 735.0,
+//       ],
+//
+//       [
+//         'id' => 2,
+//         'title' => 'Templanza (Irma)',
+//         'cover_img_url' => 'js_templanza.png',
+//         'price' => 735.0,
+//       ],
+//
+//       [
+//         'id' => 3,
+//         'title' => 'La muerte del padre',
+//         'cover_img_url' => 'kok_lamuerte.png',
+//         'price' => 735.0,
+//       ],
+//     ];
+//
+//     return view(
+//       'index',
+//       [
+//         'genres' => $genres,
+//         'novedades' => $novedades,
+//         'masVendidos' => $masVendidos,
+//       ]
+//     );
+// });
 
 Auth::routes();
 

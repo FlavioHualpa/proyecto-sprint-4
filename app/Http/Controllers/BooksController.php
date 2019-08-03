@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Book;
+use App\Genre;
+
 
 class BooksController extends Controller
 {
@@ -16,8 +18,16 @@ class BooksController extends Controller
     public function index()
     {
       $books = Book::paginate(10);
-
-      return $books;
+      $novedades = Book::orderBy('year_published', 'desc')
+      ->orderBy('title')->limit(6)->get();
+      $masVendidos = Book::orderBy('year_published', 'asc')
+      ->orderBy('title')->limit(6)->get();
+      $genres = Genre::orderBy('name')->get();
+      return view('/index', [
+        'novedades' => $novedades,
+        'masVendidos' => $masVendidos,
+        'genres' => $genres
+      ]);
     }
 
     /**
