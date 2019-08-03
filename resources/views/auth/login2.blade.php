@@ -11,7 +11,9 @@
   <div class="fondoLogYReg">
     <div id="panel-form">
       <p class="texto-registration">¿No estás registrado? Ingresá tus datos en este <a href="{{ route('register') }}" id="link_hipervinculo">link</a></p>
-      <p class="error-usuario"><?= $errores['login'] ?? '' ?></p>
+      @error('login')
+      <p class="error-usuario">{{ $message }}</p>
+      @enderror
       <form class="login" action="{{ route('login') }}" method="post">
         @csrf
         <fieldset>

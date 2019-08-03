@@ -18,7 +18,7 @@
 
 .login fieldset {
   text-decoration: none;
-  font-family: 'Lora', serif;
+  font-family: 'Roboto Condensed', serif;
   font-size: 24px;
   width: 90%;
   color: #676745;
@@ -41,17 +41,23 @@
 .login fieldset p input {
   margin: 0 auto 10px auto;
   width: 100%;
-  text-align: center;
-  font-family: 'Lora', serif;
+  border: none;
+  border-bottom: 2px solid #800000;
+  background-color: transparent;
+  outline: none;
+  // text-align: center;
+  font-family: 'Roboto Condensed', serif;
   font-size: 30px;
-  color: #676745;
+  color: #0000c0;
 }
 
 .login fieldset p input[type="submit"] {
   margin-top: 20px;
-  padding: 8px 16px;
+  padding: 8px 32px;
   border: none;
   border-radius: 6px;
+  background-color: #0000c0;
+  color: white;
   width: auto;
   font-size: 26px;
   cursor: pointer;
@@ -74,13 +80,13 @@
 }
 
 .error-login {
-  font-size: 14px;
+  font-size: 16px;
   color: #c00000;
-  margin-top: -6px;
+  margin-top: -4px;
 }
 
 .error-usuario {
-  font-size: 16px;
+  font-size: 18px;
   color: #c00000;
   margin-top: 12px;
   margin-bottom: 6px;
@@ -103,23 +109,30 @@
 }
 
 .texto-registration {
-  font-family: 'Lora', serif;
-  font-size: 14px;
+  font-family: 'Roboto Condensed', serif;
+  font-size: 16px;
+  text-align: center;
   color: black;
 }
 
+.texto-registracion a:hover {
+  color: #c00000;
+}
+
 #recordar {
-width: 10%;
+  width: auto;
+  margin-right: 4px;
+  transform: scale(1.4);
 }
 
 .error-regist {
-  font-size: 14px;
+  font-size: 16px;
   color: #c00000;
-  margin-top: -6px;
+  margin-top: -4px;
 }
 
 .error-usuario {
-  font-size: 16px;
+  font-size: 18px;
   color: #c00000;
   margin-top: 12px;
   margin-bottom: 6px;
@@ -127,7 +140,7 @@ width: 10%;
 
 .registration fieldset {
   text-decoration: none;
-  font-family: 'Lora', serif;
+  font-family: 'Roboto Condensed', serif;
   font-size: 24px;
   color: #676745;
   margin: 20px auto;
@@ -141,7 +154,11 @@ width: 10%;
   color: #202020;
 }
 
-.registration fieldset p label, .terminos, .sexo_fem, .sexo_masc, label[for="avatar_button"] {
+.registration fieldset p label,
+.terminos,
+.sexo_fem,
+.sexo_masc,
+label[for="avatar_button"] {
   font-size: 18px;
   color: #202020;
 }
@@ -187,7 +204,7 @@ width: 10%;
   margin: 0 auto 10px auto;
   width: 100%;
   text-align: center;
-  font-family: 'Lora', serif;
+  font-family: 'Roboto Condensed', serif;
   font-size: 30px;
   color: #676745;
 }
