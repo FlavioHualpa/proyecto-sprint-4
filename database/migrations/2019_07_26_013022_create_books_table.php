@@ -20,7 +20,7 @@ class CreateBooksTable extends Migration
       $table->integer('total_pages')->nullable(false)->unsigned();
       $table->decimal('price', 6, 2)->nullable(false);
       $table->string('cover_img_url', 255);
-      $table->integer('year_published')->nullable(false)->unsigned();
+      $table->date('release_date')->nullable(false);
       $table->bigInteger('genre_id')->nullable(false)->unsigned();
       $table->bigInteger('author_id')->nullable(false)->unsigned();
       $table->bigInteger('publisher_id')->nullable(false)->unsigned();

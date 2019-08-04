@@ -17,11 +17,19 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(User::class, function (Faker $faker) {
+    $countryId = App\Country::where('name', 'argentina')->get()[0]->id;
+    $sex = $faker->randomElement(['f','m']);
+    $avatar = ($sex == 'f' ? 'generic_female_avatar.png' : 'generic_male_avatar.png');
     return [
-        'name' => $faker->name,
+        'first_name' => $faker->firstName($sex == 'f' ? 'female' : 'male'),
+        'last_name' => $faker->lastName,
         'email' => $faker->unique()->safeEmail,
+        'country_id' => $countryId,
+        'birth_date' => $faker->date('Y-m-d', '2010-12-31'),
+        'sex' => $sex,
+        'password' => Hash::make('password'),
+        'avatar_url' => $avatar,
         'email_verified_at' => now(),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => Str::random(10),
     ];
 });

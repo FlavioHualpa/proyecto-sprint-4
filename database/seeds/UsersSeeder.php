@@ -19,11 +19,13 @@ class UsersSeeder extends Seeder
             'country_id' => '1',
             'birth_date' => '2000-01-01',
             'sex' => 'm',
-            'password' => 'password',
+            'password' => Hash::make('password'),
             'role' => 'admin',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
           ]
         );
+
+        factory(App\User::class, 60)->create();
     }
 }

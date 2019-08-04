@@ -18,12 +18,18 @@ class BooksController extends Controller
      */
     public function index()
     {
-      $books = Book::paginate(10);
-      $novedades = Book::orderBy('year_published', 'desc')
-      ->orderBy('title')->limit(6)->get();
-      $masVendidos = Book::orderBy('year_published', 'asc')
-      ->orderBy('title')->limit(6)->get();
+      $novedades = Book::orderBy('release_date', 'desc')
+        ->orderBy('title')
+        ->limit(6)
+        ->get();
+
+      $masVendidos = Book::orderBy('ranking', 'asc')
+        ->orderBy('title')
+        ->limit(6)
+        ->get();
+
       $genres = Genre::orderBy('name')->get();
+
       return view('/index', [
         'novedades' => $novedades,
         'masVendidos' => $masVendidos,

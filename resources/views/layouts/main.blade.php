@@ -38,7 +38,7 @@
       @if (Auth::user())
         <div>
           <div id="user-options">
-            <div class="avatar" style="background-image: url('{{ Auth::user()->avatar_url }}')">
+            <div class="avatar" style="background-image: url('/storage/{{ Auth::user()->avatar_url }}')">
             </div>
             <span>
               {{ Auth::user()->first_name }}
@@ -93,10 +93,16 @@
           </a>
         </li>
         <li>
-          <a href="/logout">
+          <a href="{{ route('logout') }}"
+             onclick="event.preventDefault();
+             document.getElementById('logout-form').submit();"
+          >
             <i class="fas fa-sign-out-alt"></i>
             cerrar sesión
           </a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+          </form>
         </li>
       </ul>
     </header>
