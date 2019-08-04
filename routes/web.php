@@ -78,7 +78,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/genres', 'GenresController@index');
 Route::get('/genres', 'GenresController@show');
 
-
 Route::get('/languages', 'LanguagesController@index');
 
 Route::get('/authors', 'AuthorsController@index');

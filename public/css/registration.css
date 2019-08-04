@@ -74,15 +74,43 @@
   color: white;
 }
 
-#link_hipervinculo {
+.link_hipervinculo {
   text-decoration: none;
   color: #304878;
+}
+
+.link_hipervinculo:hover {
+  color: #c00000;
+}
+
+.oh {
+  overflow: hidden;
+}
+
+.la {
+  float: left;
+}
+
+.ra {
+  float: right;
+}
+
+.fs-18 {
+  font-size: 18px;
+}
+
+.mt-6 {
+  margin-top: 6px;
 }
 
 .error-login {
   font-size: 16px;
   color: #c00000;
   margin-top: -4px;
+}
+
+.error-login i {
+  margin-right: 4px;
 }
 
 .error-usuario {
@@ -113,10 +141,6 @@
   font-size: 16px;
   text-align: center;
   color: black;
-}
-
-.texto-registracion a:hover {
-  color: #c00000;
 }
 
 #recordar {

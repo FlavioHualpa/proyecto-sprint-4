@@ -10,7 +10,7 @@
 <div class="container">
   <div class="fondoLogYReg">
     <div id="panel-form">
-      <p class="texto-registration">¿No estás registrado? Ingresá tus datos en este <a href="{{ route('register') }}" id="link_hipervinculo">link</a></p>
+      <p class="texto-registration">¿No estás registrado? Ingresá tus datos en este <a href="{{ route('register') }}" class="link_hipervinculo">link</a></p>
       @error('login')
       <p class="error-usuario">{{ $message }}</p>
       @enderror
@@ -22,23 +22,32 @@
             <label for="email">Email</label>
             <input id="email" type="text" name="email" value="{{ old('email') }}" placeholder="user@email.com">
             @error('email')
-            <p class="error-login">{{ $message }}</p>
+            <p class="error-login"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>
             @enderror
           </p>
           <p>
             <label for="pass">Contraseña</label>
             <input id="pass" type="password" name="password" value="{{ old('password') }}" placeholder="Ingresar Contraseña">
             @error('password')
-            <p class="error-login">{{ $message }}</p>
+            <p class="error-login"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>
             @enderror
           </p>
-          <p>
-            <input type="checkbox" name="recordar" value="si" id="recordar" {{ old('recordar') ? 'checked' : '' }}>
-            <label for="recordar">Recordarme</label>
+          <p class="oh">
+            <span class="la">
+              <input type="checkbox" name="recordar" value="si" id="recordar" {{ old('recordar') ? 'checked' : '' }}>
+              <label for="recordar">Recordarme</label>
+            </span>
+            <span class="ra fs-18 mt-6">
+              @if (Route::has('password.request'))
+                <a href="{{ route('password.request') }}" class="link_hipervinculo">
+                  ¿Olvidó su contraseña?
+                </a>
+              @endif
+            </span>
           </p>
           <div class="botones">
             <p>
-              <input id="boton" type="submit" value="INGRESAR">
+              <input type="submit" value="INGRESAR">
             </p>
           </div>
         </fieldset>

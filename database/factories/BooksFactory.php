@@ -14,19 +14,23 @@ $factory->define(Book::class, function (Faker $faker) {
   $authors = Author::all();
   $publishers = Publisher::all();
   $languages = Language::all();
+  $covers = array_map(
+    function($file) { return $file->getFileName(); },
+    File::files('public\img\covers')
+  );
 
   return [
     'id' => null,
     'title' => $faker->sentence(4),
     'total_pages' => $faker->numberBetween(50, 1200),
     'price' => $faker->randomFloat(1, 80, 1500),
-    'cover_img_url' => 'mr_luciernagas.png',
-    'year_published' => $faker->numberBetween(1950, 2019),
+    'cover_img_url' => $faker->randomElement($covers),
+    'release_date' => $faker->date('Y-m-d', '2019-06-30'),
     'genre_id' => $genres->random()->id,
     'author_id' => $authors->random()->id,
     'publisher_id' => $publishers->random()->id,
     'language_id' => $languages->random()->id,
-    'ranking' => 0,
+    'ranking' => $faker->unique()->numberBetween(1, 300),
     'resena' => $faker->sentence(40),
     'isbn' => $faker->isbn13,
     'created_at' => date('Y-m-d H:i:s'),

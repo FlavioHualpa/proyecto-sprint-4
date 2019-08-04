@@ -25,5 +25,7 @@ class UsersSeeder extends Seeder
             'updated_at' => date('Y-m-d H:i:s'),
           ]
         );
+
+        factory(App\User::class, 60)->create();
     }
 }

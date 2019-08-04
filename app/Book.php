@@ -8,7 +8,7 @@ class Book extends Model
 {
   protected $table = 'books';
   protected $fillable = [
-    'title', 'total_pages', 'price', 'cover_img_url', 'year_published',
+    'title', 'total_pages', 'price', 'cover_img_url', 'release_date',
     'genre_id', 'author_id', 'publisher_id', 'language_id', 'ranking',
     'resena', 'isbn', 'created_at', 'updated_at'
   ];
