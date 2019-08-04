@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Book;
 use App\Genre;
+use App\User;
 
 
 class BooksController extends Controller
@@ -37,7 +38,7 @@ class BooksController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**

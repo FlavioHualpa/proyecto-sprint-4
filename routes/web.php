@@ -86,5 +86,9 @@ Route::get('/authors', 'AuthorsController@index');
 Route::get('/publishers', 'PublishersController@index');
 
 Route::get('/books', 'BooksController@index');
+Route::get('/books', 'BooksController@create');
+Route::get('/books', 'BooksController@edit');
+Route::post('/books', 'BooksController@store');
+Route::get('/books', 'BooksController@destroy');
 
 Route::get('/purchases', 'PurchasesController@index');
