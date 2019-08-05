@@ -1,4 +1,5 @@
 <?php
+use App\Genre;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,7 +12,43 @@
 |
 */
 
-Route::get('/', 'BooksController@index');
+
+Auth::routes();
+
+Route::get('/', 'HomeController@index');
+
+//Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/admin', function(){
+  return view('/admin/index');
+});
+Route::get('/admin/authors', 'AuthorsController@list');
+
+Route::get('/admin/books/list', 'BooksController@list');
+Route::get('/admin/books/show/{book}', 'BooksController@show');
+Route::get('/admin/books/create', 'BooksController@create');
+Route::post('/admin/books/create', 'BooksController@store');
+Route::get('/admin/books/edit/{id}', 'BooksController@edit');
+Route::post('/admin/books/edit/{id}', 'BooksController@update');
+Route::get('/admin/books/delete/{id}', 'BooksController@destroy');
+
+
+Route::get('/admin/genres', 'GenresController@list');
+Route::get('/admin/languages', 'LanguagesController@list');
+Route::get('/admin/publishers', 'PublishersController@list');
+
+Route::get('/authors', 'AuthorsController@index');
+
+Route::get('/genres', 'GenresController@index');
+Route::get('/genres', 'GenresController@show');
+
+Route::get('/languages', 'LanguagesController@index');
+
+Route::get('/publishers', 'PublishersController@index');
+
+Route::get('/purchases', 'PurchasesController@index');
+
+
 // {
 //     $genres = App\Genre::orderBy('name')->get();
 //
@@ -70,20 +107,3 @@ Route::get('/', 'BooksController@index');
 //       ]
 //     );
 // });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/genres', 'GenresController@index');
-Route::get('/genres', 'GenresController@show');
-
-Route::get('/languages', 'LanguagesController@index');
-
-Route::get('/authors', 'AuthorsController@index');
-
-Route::get('/publishers', 'PublishersController@index');
-
-Route::get('/books', 'BooksController@index');
-
-Route::get('/purchases', 'PurchasesController@index');

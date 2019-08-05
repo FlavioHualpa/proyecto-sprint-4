@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Book;
+use App\Genre;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,27 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+      if(auth()->user()->role == "admin"){
+        return view('/admin');
+      }
+
+      $novedades = Book::orderBy('release_date', 'desc')
+        ->orderBy('title')
+        ->limit(6)
+        ->get();
+
+      $masVendidos = Book::orderBy('ranking', 'asc')
+        ->orderBy('title')
+        ->limit(6)
+        ->get();
+
+      $genres = Genre::orderBy('name')->get();
+
+        return view('/index', [
+        'novedades' => $novedades,
+        'masVendidos' => $masVendidos,
+        'genres' => $genres
+      ]);
     }
+
 }
