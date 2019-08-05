@@ -38,7 +38,7 @@
       @if (Auth::user())
         <div>
           <div id="user-options">
-            <div class="avatar" style="background-image: url('/storage/{{ Auth::user()->avatar_url }}')">
+            <div class="avatar" style="background-image: url('/storage/avatars/{{ Auth::user()->avatar_url }}')">
             </div>
             <span>
               {{ Auth::user()->first_name }}
@@ -52,7 +52,7 @@
             y traer la cantidad de productos guardados
             en el carrito de compras
             -->
-            <span>0</span>
+            <span>{{ Auth::user()->carts[0]->books->count() }}</span>
           </div>
         </div>
       @else
