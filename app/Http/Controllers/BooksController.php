@@ -20,8 +20,9 @@ class BooksController extends Controller
      */
     public function index()
     {
-
-
+      if(auth()->check() && auth()->user()->role=="admin"){
+        return view('/admin/index');
+      } else {
       $novedades = Book::orderBy('release_date', 'desc')
         ->orderBy('title')
         ->limit(6)
@@ -32,14 +33,15 @@ class BooksController extends Controller
         ->limit(6)
         ->get();
 
-      $genres = Genre::orderBy('name')->get();
+      $genres = Genre::orderBy('name')
+        ->get();
 
         return view('/index', [
         'novedades' => $novedades,
         'masVendidos' => $masVendidos,
         'genres' => $genres
       ]);
-
+      }
     }
     /**
      * Show the form for creating a new resource.

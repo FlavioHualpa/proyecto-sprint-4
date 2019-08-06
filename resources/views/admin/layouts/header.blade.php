@@ -21,8 +21,12 @@
 <body>
   <div id="contenedor">
     <header id="navegador">
-      <div id="book-button">
+      <div id="create-button">
         <a href="/admin/books/create" class="create-book-link">CREAR</a>
+      </div>
+
+      <div id="logout-admin">
+        <a href="/home" class="logout-admin">VISTA CLIENTE</a>
       </div>
 
       <div id="buscador">
