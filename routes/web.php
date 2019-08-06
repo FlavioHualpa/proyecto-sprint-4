@@ -15,23 +15,19 @@ use App\Genre;
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'BooksController@index');
 
-//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin', function(){
-  return view('/admin/index');
-});
-Route::get('/admin/authors', 'AuthorsController@list');
-
-Route::get('/admin/books/list', 'BooksController@list');
-Route::get('/admin/books/show/{book}', 'BooksController@show');
-Route::get('/admin/books/create', 'BooksController@create');
-Route::post('/admin/books/create', 'BooksController@store');
-Route::get('/admin/books/edit/{id}', 'BooksController@edit');
-Route::post('/admin/books/edit/{id}', 'BooksController@update');
-Route::get('/admin/books/delete/{id}', 'BooksController@destroy');
-
+Route::get('/admin', 'BooksController@index')->middleware('role:admin');
+Route::get('/admin/authors', 'AuthorsController@list')->middleware('role:admin');
+Route::get('/admin/books/list', 'BooksController@list')->middleware('role:admin');
+Route::get('/admin/books/show/{book}', 'BooksController@show')->middleware('role:admin');
+Route::get('/admin/books/create', 'BooksController@create')->middleware('role:admin');
+Route::post('/admin/books/create', 'BooksController@store')->middleware('role:admin');
+Route::get('/admin/books/edit/{id}', 'BooksController@edit')->middleware('role:admin');
+Route::post('/admin/books/edit/{id}', 'BooksController@update')->middleware('role:admin');
+Route::get('/admin/books/delete/{id}', 'BooksController@destroy')->middleware('role:admin');
 
 Route::get('/admin/genres', 'GenresController@list');
 Route::get('/admin/languages', 'LanguagesController@list');

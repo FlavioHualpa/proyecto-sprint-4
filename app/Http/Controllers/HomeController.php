@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+
 use App\Book;
 use App\Genre;
+use App\User;
+use App\Author;
+use App\Publisher;
+use App\Language;
 
 class HomeController extends Controller
 {
@@ -26,9 +30,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-      if(auth()->user()->role == "admin"){
-        return redirect('/admin');
-      }
 
       $novedades = Book::orderBy('release_date', 'desc')
         ->orderBy('title')
@@ -47,6 +48,7 @@ class HomeController extends Controller
         'masVendidos' => $masVendidos,
         'genres' => $genres
       ]);
+
     }
 
 }

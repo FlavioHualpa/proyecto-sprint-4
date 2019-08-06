@@ -1,4 +1,4 @@
-@extends('layouts/main')
+  @extends('layouts/main')
 
 @section('styles')
   <link rel="stylesheet" href="/css/styles.css">
