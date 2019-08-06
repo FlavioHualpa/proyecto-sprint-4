@@ -10,6 +10,7 @@ use App\User;
 use App\Author;
 use App\Publisher;
 use App\Language;
+use DB;
 
 class BooksController extends Controller
 {
@@ -209,5 +210,49 @@ class BooksController extends Controller
       $book=Book::find($id);
       $book->delete();
       return redirect('/admin');
+    }
+
+    public function search(Request $request)
+    {
+      $keywords = $request->input('keywords');
+      $searchString = '%' . $keywords . '%';
+      $books = Book::where('title', 'like', $searchString)->paginate(10);
+      $genres = Genre::orderBy('name')->get();
+      $books = DB::select('SELECT books.id, title, total_pages,
+                price, cover_img_url, release_date,
+                languages.name AS language,
+                genres.name AS genre,
+                CONCAT(authors.first_name, " ", authors.last_name) AS author,
+                publishers.name AS publisher,
+                resena,
+                isbn
+                FROM books
+                INNER JOIN languages ON languages.id = books.language_id
+                INNER JOIN genres ON genres.id = books.genre_id
+                INNER JOIN authors ON authors.id = books.author_id
+                INNER JOIN publishers ON publishers.id = books.publisher_id
+                WHERE books.title LIKE ?
+                OR authors.first_name LIKE ?
+                OR authors.last_name LIKE ?
+                OR publishers.name LIKE ?
+                OR books.resena LIKE ?',
+                [ $searchString,
+                  $searchString,
+                  $searchString,
+                  $searchString,
+                  $searchString
+                ]
+             );
+
+      dd($books);
+
+      return view(
+        'search',
+        [
+          'keywords' => $keywords,
+          'books' => $books,
+          'genres' => $genres
+        ]
+      );
     }
   }

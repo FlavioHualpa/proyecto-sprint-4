@@ -43,7 +43,7 @@ class HomeController extends Controller
 
       $genres = Genre::orderBy('name')->get();
 
-        return view('/index', [
+      return view('index', [
         'novedades' => $novedades,
         'masVendidos' => $masVendidos,
         'genres' => $genres
