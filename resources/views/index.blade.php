@@ -28,7 +28,7 @@
           <div class="fondo-con-sombra">
             <div class="tapaYTitulo">
               <div class="tapa">
-                <img src="{!! '/storage/img/covers/' . $libro['cover_img_url'] !!}" alt="{{ $libro['title'] }}">
+                <img src="{!! '/storage/covers/' . $libro['cover_img_url'] !!}" alt="{{ $libro['title'] }}">
               </div>
               <h4>{{ $libro['title'] }}</h4>
             </div>
@@ -66,7 +66,7 @@
         @foreach($masVendidos as $libro)
         <article>
           <div class="fondo-con-sombra">
-            <img src="{!! '/storage/img/covers/' . $libro['cover_img_url'] !!}" alt="{{ $libro['title'] }}">
+            <img src="{!! '/storage/covers/' . $libro['cover_img_url'] !!}" alt="{{ $libro['title'] }}">
             <h4>{{ $libro['title'] }}</h4>
             <div class="ver-mas">
               <a href="/book/?bookid={{ $libro['id'] }}">

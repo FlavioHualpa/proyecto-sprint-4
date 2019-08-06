@@ -1,2 +1,6 @@
 *
+!/avatars
+!/avatars/*
+!/covers
+!/covers/*
 !.gitignore

@@ -30,7 +30,7 @@
         </div>
       </div>
       <div id="buscador">
-        <form action="/search" method="get">
+        <form action="/books/search" method="get">
           <input type="text" name="keywords" placeholder="busque por título, autor o editorial">
           <button type="submit"><i class="fas fa-search"></i></button>
         </form>

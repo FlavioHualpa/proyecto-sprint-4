@@ -27,7 +27,7 @@ class HomeController extends Controller
     public function index()
     {
       if(auth()->user()->role == "admin"){
-        return view('/admin');
+        return redirect('/admin');
       }
 
       $novedades = Book::orderBy('release_date', 'desc')
@@ -42,7 +42,7 @@ class HomeController extends Controller
 
       $genres = Genre::orderBy('name')->get();
 
-        return view('/index', [
+      return view('index', [
         'novedades' => $novedades,
         'masVendidos' => $masVendidos,
         'genres' => $genres
