@@ -16,7 +16,7 @@ $factory->define(Book::class, function (Faker $faker) {
   $languages = Language::all();
   $covers = array_map(
     function($file) { return $file->getFileName(); },
-    File::files('public\img\covers')
+    File::files('storage\app\public\covers')
   );
 
   return [

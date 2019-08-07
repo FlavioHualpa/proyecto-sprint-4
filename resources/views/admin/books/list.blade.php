@@ -1,8 +1,8 @@
 @extends('admin/layouts/header')
 
 @section('content')
-<h1>Listado de Libros</h1>
-<div class="">
+<div class="list-book-admin">
+  <p>Listado de Libros</p>
   <ul>
     @foreach ($books as $book)
     <li>
