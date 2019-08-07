@@ -21,12 +21,12 @@
 <body>
   <div id="contenedor">
     <header id="navegador">
-      <div id="create-button">
-        <a href="/admin/books/create" class="create-book-link">CREAR</a>
+      <div id="admin-header-button">
+        <a href="/admin/books/create" class="create-book">CREAR</a>
       </div>
 
-      <div id="logout-admin">
-        <a href="/home" class="logout-admin">VISTA CLIENTE</a>
+      <div id="admin-header-button">
+        <a href="/home" class="front-end">VISTA CLIENTE</a>
       </div>
 
       <div id="buscador">
@@ -36,7 +36,7 @@
         </form>
       </div>
     </header>
-    <header id="encabezado">
+    <header id="encabezado-admin">
       <h1>¿Qué Leo?</h1>
       <h3>Un espacio para descubrir</h3>
     </header>
