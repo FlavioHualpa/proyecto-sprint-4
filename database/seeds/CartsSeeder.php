@@ -11,7 +11,10 @@ class CartsSeeder extends Seeder
      */
     public function run()
     {
-      $users = App\User::all();
+      $users = App\User::all()
+        ->reject(function ($value, $key) {
+          return $value->first_name == 'Admin';
+        });
 
       foreach ($users as $user) {
         App\Cart::create(

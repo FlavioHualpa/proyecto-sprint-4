@@ -34,8 +34,8 @@
             <span>$ {{ number_format($book->price, 2) }}</span>
           </div>
           <p class="desc-1">{{ $book->title }}</p>
-          <p class="desc-2">{{ $book->author->fullName() }}</p>
-          <p class="desc-3">{{ $book->publisher->name }}</p>
+          <p class="desc-2">{{ $book->author }}</p>
+          <p class="desc-3">{{ $book->publisher }}</p>
           <p class="desc-4">{{ $book->resena }}</p>
           <span>
             <a href="#">

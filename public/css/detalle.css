@@ -19,6 +19,7 @@
   flex-direction: row;
   margin-left: 15%;
   margin-right: 15%;
+  margin-top: 50px;
   padding-bottom: 40px;
 }
 
@@ -65,7 +66,7 @@
 .detalle_cantidad  input[type="number"] {
   margin: 5px auto 10px auto;
   padding-left: 5px;
-  text-align: center
+  text-align: center;
   box-sizing: border-box;
   border-radius: 3px;
   border: 1px solid #c9c9c9;
@@ -75,7 +76,7 @@
 
 .detalle_lateral p {
 font-family: 'Mali', cursive;
-font-size: 14px;
+font-size: 15px;
 text-align: justify;
 color: #304878;
 }
@@ -124,7 +125,7 @@ color: #304878;
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 20px;
   color: #0090ff;
-  margin-top: 2%;
+  xmargin-top: 2%;
 }
 
 .acerca_sec p, ul, li {

@@ -33,7 +33,7 @@
               <h4>{{ $libro['title'] }}</h4>
             </div>
             <div class="ver-mas">
-              <a href="/book/?bookid={{ $libro['id'] }}">
+              <a href="/book/{{ $libro['id'] }}">
                  <i class="fas fa-eye"></i>
                  <span>
                     VER DETALLES
