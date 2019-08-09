@@ -58,7 +58,6 @@ label[for="avatar_button"] {
   border-bottom: 2px solid #800000;
   background-color: transparent;
   outline: none;
-  // text-align: center;
   font-family: 'Roboto Condensed', serif;
   font-size: 30px;
   color: #0000c0;
@@ -100,10 +99,12 @@ label[for="avatar_button"] {
   background-color: #c0c0c0;
 }
 
-.registration fieldset div input[type="checkbox"] {
+.login fieldset p input[type="checkbox"],
+.registration fieldset p input[type="checkbox"] {
   transform: scale(1.4);
-  margin-right: 10px;
+  margin-right: 5px;
   margin-top: 5px;
+  width: auto;
 }
 
 .registration fieldset legend p .sexo {

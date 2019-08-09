@@ -20,7 +20,7 @@
           <legend>Ingresá tus datos</legend>
           <p>
             <label for="email">Email</label>
-            <input id="email" type="text" name="email" value="{{ old('email') }}" placeholder="user@email.com">
+            <input id="email" type="text" name="email" value="{{ old('email') }}" placeholder="user@email.com" autocomplete="email">
             @error('email')
             <p class="error-login"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>
             @enderror
@@ -34,8 +34,8 @@
           </p>
           <p class="oh">
             <span class="la">
-              <input type="checkbox" name="recordar" value="si" id="recordar" {{ old('recordar') ? 'checked' : '' }}>
-              <label for="recordar">Recordarme</label>
+              <input type="checkbox" name="remember" value="si" id="remember" {{ old('remember') ? 'checked' : '' }}>
+              <label for="remember">Recordarme</label>
             </span>
             <span class="ra fs-18 mt-6">
               @if (Route::has('password.request'))

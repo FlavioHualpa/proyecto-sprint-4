@@ -24,6 +24,12 @@
         </p>
       </div>
     @else
+      <form id="change-page-form" action="" method="get" style="display: none">
+        <input type="hidden" name="keywords" value="{{ $keywords }}">
+        <input type="hidden" name="page" value="">
+      </form>
+      <h3>Mostrando resultados {{ $books->firstItem() }} a {{ $books->lastItem() }} de {{ $books->total() }}</h3>
+      {{ $books->links() }}
       @foreach ($books as $book)
         <article class="item-resultado">
           <div>
@@ -32,23 +38,24 @@
             </a>
             <br>
             <span>$ {{ number_format($book->price, 2) }}</span>
+            <br>
+            <a href="#">
+              <i class="fas fa-bookmark"></i>
+              Agregar a mis libros
+            </a>
           </div>
           <p class="desc-1">{{ $book->title }}</p>
-          <p class="desc-2">{{ $book->author }}</p>
-          <p class="desc-3">{{ $book->publisher }}</p>
+          <p class="desc-2">{{ $book->author->fullName() }}</p>
+          <p class="desc-3">{{ $book->publisher->name }}</p>
           <p class="desc-4">{{ $book->resena }}</p>
           <span>
             <a href="#">
               agregar al <i class="fas fa-shopping-cart"></i>
             </a>
           </span>
-          <br>
-          <a href="#">
-            <i class="fas fa-bookmark"></i>
-            Agregar a mis libros
-          </a>
         </article>
       @endforeach
+      {{ $books->links() }}
     @endif
   </section>
 @endsection

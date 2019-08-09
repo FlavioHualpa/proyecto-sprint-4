@@ -143,5 +143,6 @@
   </div>
   <script src="/js/header.js">
   </script>
+  @stack('aditional-js')
 </body>
 </html>

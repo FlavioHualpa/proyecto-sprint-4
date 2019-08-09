@@ -216,8 +216,20 @@ class BooksController extends Controller
   {
     $keywords = $request->input('keywords');
     $searchString = '%' . $keywords . '%';
-    $books = Book::where('title', 'like', $searchString)->paginate(10);
+    $books = Book::join('genres', 'genres.id', '=', 'books.genre_id')
+      ->join('languages', 'languages.id', '=', 'books.language_id')
+      ->join('authors', 'authors.id', '=', 'books.author_id')
+      ->join('publishers', 'publishers.id', '=', 'books.publisher_id')
+      ->where('books.title', 'like', $searchString)
+      ->orWhere('books.resena', 'like', $searchString)
+      ->orWhere('authors.first_name', 'like', $searchString)
+      ->orWhere('authors.last_name', 'like', $searchString)
+      ->orWhere('publishers.name', 'like', $searchString)
+      ->select('books.*')
+      ->paginate(10)
+      ->appends('keywords', $keywords);
     $genres = Genre::orderBy('name')->get();
+    /*
     $books = DB::select('SELECT books.id, title, total_pages,
       price, cover_img_url, release_date,
       languages.name AS language,
@@ -243,6 +255,7 @@ class BooksController extends Controller
       $searchString
       ]
     );
+    */
 
     return view(
       'search',

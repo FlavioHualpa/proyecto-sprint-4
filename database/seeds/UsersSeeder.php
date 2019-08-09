@@ -35,10 +35,6 @@ class UsersSeeder extends Seeder
           ]
         );
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 8407568e73e0de27c1e73cfb9cbab63b42363523
         factory(App\User::class, 60)->create();
     }
 }
