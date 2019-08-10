@@ -11,6 +11,6 @@
     @endforeach
   </ul>
 </div>
-{{$publisher->links()}}
+    
 
 @endsection
