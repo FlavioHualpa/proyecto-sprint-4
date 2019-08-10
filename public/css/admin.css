@@ -1,103 +1,5 @@
-
-#buscador {
-   width: 350px;
-   background-color: white;
-   border: 2px solid #0000f0;
-   border-radius: 6px;
-}
-
-#buscador form {
-   display: flex;
-   flex-direction: row;
-   justify-content: space-between;
-   align-items: center;
-}
-
-#buscador input[type="text"] {
-   width: 100%;
-   font-family: 'Roboto Condensed';
-   font-style: italic;
-   font-size: 20px;
-   border-radius: 6px;
-   padding: 6px 10px;
-   border: none;
-   outline: none;
-}
-
-#buscador button {
-   border: none;
-   border-left: 1px solid #e0e0e0;
-   background-color: white;
-   font-size: 22px;
-   padding: 6px 10px;
-   border-top-right-radius: 6px;
-   border-bottom-right-radius: 6px;
-   cursor: pointer;
-   transition: 0.3s;
-}
-
-#buscador button:hover {
-   background-color: #b0f0f0;
-}
-
-.create-book {
-   width: 80px;
-   text-decoration: none;
-   background-color: #e8ffff;
-   border: 2px solid #0000f0;
-   border-radius: 6px;
-   padding: 8px;
-   margin: 0 auto;
-   text-align: center;
-   display: flex;
-   flex-direction: row;
-   justify-content: space-between;
-   align-items: center;
-   cursor: pointer;
-   transition: 0.3s;
-}
-
-.front-end {
-   width: 150px;
-   text-decoration: none;
-   background-color: #e8ffff;
-   border: 2px solid #0000f0;
-   border-radius: 6px;
-   padding: 8px;
-   margin: 0 auto;
-   text-align: center;
-   display: flex;
-   flex-direction: row;
-   justify-content: space-between;
-   align-items: center;
-   cursor: pointer;
-   transition: 0.3s;
-}
-
-#encabezado-admin {
-  background-color: #02137A;
-  color: White;
-
-}
-
-#encabezado-admin h1 {
-  font-family: 'Lobster', cursive;
-  font-size: 72px;
-  color: white;
-  text-align: center;
-  padding-top: 8px;
-  }
-
-#encabezado-admin h3 {
-  font-family: 'Mali';
-  font-weight: normal;
-  text-align: center;
-  color: white;
-  padding-bottom: 30px;
-}
-
-.titulo-list-admin p {
-  margin-top: 10px;
+.panel-admin p, .create-title {
+    margin-top: 10px;
   text-align: center;
     font-family: 'Mali';
     font-weight: normal;
@@ -105,7 +7,7 @@
     color: #304878;
 }
 
-.items-list-admin ul {
+.items-panel-admin ul {
   display: flex;
   list-style-type: none;
   font-family: 'Mali';
@@ -113,7 +15,7 @@
   color: #304878;
 }
 
-.items-list-admin ul li {
+.items-panel-admin ul li {
   width: 150px;
   color: #304878;
   text-decoration: none;
@@ -161,8 +63,11 @@
   font-size: 18px;
   color: #304878;
 }
+
+
 .pagination  {
   margin-top: 50px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -176,4 +81,10 @@
   font-family: 'Mali';
   font-size: 22px;
   color: #304878;
+}
+
+.fondo-create-form {
+  background-color: rgba(10, 10, 183, 0.5);
+  border: 2px solid #0000f0;
+  border-radius: 6px;
 }

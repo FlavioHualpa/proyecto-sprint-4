@@ -22,7 +22,7 @@
   <div id="contenedor">
     <header id="navegador">
       <div id="admin-header-button">
-        <a href="/admin/books/create" class="create-book">CREAR</a>
+        <a href="/admin/books/create" class="create-book-button">CREAR</a>
       </div>
 
       <div id="admin-header-button">
@@ -30,13 +30,13 @@
       </div>
 
       <div id="buscador">
-        <form action="/search" method="get">
+        <form action="books/search" method="get">
           <input type="text" name="keywords" placeholder="busque por título, autor o editorial">
           <button type="submit"><i class="fas fa-search"></i></button>
         </form>
       </div>
     </header>
-    <header id="encabezado-admin">
+    <header id="encabezado">
       <h1>¿Qué Leo?</h1>
       <h3>Un espacio para descubrir</h3>
     </header>

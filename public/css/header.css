@@ -271,3 +271,38 @@
 #menu-usuario li i {
    margin-right: 6px;
 }
+
+
+.create-book-button {
+   width: 80px;
+   text-decoration: none;
+   background-color: #e8ffff;
+   border: 2px solid #0000f0;
+   border-radius: 6px;
+   padding: 8px;
+   margin: 0 auto;
+   text-align: center;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   cursor: pointer;
+   transition: 0.3s;
+}
+
+.front-end {
+   width: 150px;
+   text-decoration: none;
+   background-color: #e8ffff;
+   border: 2px solid #0000f0;
+   border-radius: 6px;
+   padding: 8px;
+   margin: 0 auto;
+   text-align: center;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   cursor: pointer;
+   transition: 0.3s;
+}
