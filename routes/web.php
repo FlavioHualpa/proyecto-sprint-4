@@ -46,3 +46,4 @@ Route::get('/purchases', 'PurchasesController@index');
 
 Route::get('/books/search', 'BooksController@search');
 Route::get('/book/{id}', 'BooksController@bookDetail');
+Route::get('/book/add/{id}', 'CartsController@addProduct')->middleware('auth');
