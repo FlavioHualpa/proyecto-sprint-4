@@ -20,15 +20,25 @@ class GenresController extends Controller
         return $genres;
     }
 
+    public function list()
+    {
+      $genres = Genre::orderBy('name')
+      ->paginate(20);
+      return view('/admin/genres/list', [
+        'genres' => $genres
+      ]);
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+     public function create()
+     {
+       return view('/admin/genres/create');
+     }
 
     /**
      * Store a newly created resource in storage.
@@ -36,10 +46,13 @@ class GenresController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+     public function store(Request $request)
+     {
+       Genre::create([
+         'name' => $request->name
+       ]);
+       return redirect('/admin');
+     }
 
     /**
      * Display the specified resource.
@@ -47,10 +60,13 @@ class GenresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+     public function show(Genre $genre)
+     {
+       return view('/admin/genres/show', [
+         'genre' => $genre
+       ]);
+     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -58,10 +74,13 @@ class GenresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+     public function edit($id)
+     {
+       $genre = Genre::find($id);
+       return view('/admin/genres/edit', [
+         'genre' => $genre
+       ]);
+     }
 
     /**
      * Update the specified resource in storage.
@@ -70,10 +89,16 @@ class GenresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+     public function update(Request $request, $id)
+     {
+       $genre = Genre::find($id);
+
+       $genre->name = $request->name;
+       $genre->save();
+       return redirect('/admin');
+
+     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -81,8 +106,10 @@ class GenresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+     public function destroy($id)
+     {
+       $genre = Genre::find($id);
+       $genre->delete();
+       return redirect('/admin');
+     }
 }

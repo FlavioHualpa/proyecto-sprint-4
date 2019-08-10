@@ -51,7 +51,8 @@ class BooksController extends Controller
   */
   public function list()
   {
-    $books = Book::paginate(20);
+    $books = Book::orderBy('title')
+    ->paginate(20);
     return view('/admin/books/list', [
       'books' => $books
     ]);

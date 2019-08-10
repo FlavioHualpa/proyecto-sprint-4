@@ -19,16 +19,23 @@ class PublishersController extends Controller
 
       return $publishers;
     }
-
+    public function list()
+    {
+      $publishers = Publisher::orderBy('name')
+      ->paginate(20);
+      return view('/admin/publishers/list', [
+        'publishers' => $publishers
+      ]);
+    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+     public function create()
+     {
+       return view('/admin/publishers/create');
+     }
 
     /**
      * Store a newly created resource in storage.
@@ -36,10 +43,13 @@ class PublishersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+     public function store(Request $request)
+     {
+       Publisher::create([
+         'name' => $request->name
+       ]);
+       return redirect('/admin');
+     }
 
     /**
      * Display the specified resource.
@@ -47,21 +57,25 @@ class PublishersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
-
+     public function show(Publisher $publisher)
+     {
+       return view('/admin/publishers/show', [
+         'publisher' => $publisher
+       ]);
+     }
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+     public function edit($id)
+     {
+       $publisher = Publisher::find($id);
+       return view('/admin/publishers/edit', [
+         'publisher' => $publisher
+       ]);
+     }
 
     /**
      * Update the specified resource in storage.
@@ -70,10 +84,15 @@ class PublishersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+     public function update(Request $request, $id)
+     {
+       $publisher = Publisher::find($id);
+
+       $publisher->name = $request->name;
+       $publisher->save();
+       return redirect('/admin');
+
+     }
 
     /**
      * Remove the specified resource from storage.
