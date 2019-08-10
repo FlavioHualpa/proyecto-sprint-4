@@ -44,7 +44,7 @@
               {{ Auth::user()->first_name }}
             </span>
           </div>
-          <div id="cart">
+          <div id=  "cart">
             <i class="fas fa-shopping-cart"></i>
             <!--
             en próximas versiones aquí vamos a consultar

@@ -46,4 +46,13 @@ Route::get('/purchases', 'PurchasesController@index');
 
 Route::get('/books/search', 'BooksController@search');
 Route::get('/book/{id}', 'BooksController@bookDetail');
+
 Route::get('/book/add/{id}', 'CartsController@addProduct')->middleware('auth');
+
+Route::get('/install', function(){
+  Artisan::call('storage:link');
+});
+
+Route::get('/correrMigracion', function(){
+ Artisan::call('migrate');
+});

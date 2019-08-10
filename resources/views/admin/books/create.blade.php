@@ -2,8 +2,13 @@
 
 @section('content')
 
-<h3>Agrega un Libro</h3>
+<div class="fondo-create-form">
 
+<div class="create-title">
+
+  <h3>Agrega un Libro</h3>
+
+</div>
 <div class='form_create_book'>
 
 <form class="create-book" action="/admin/books/create" method="post"  enctype="multipart/form-data">
@@ -89,6 +94,7 @@
 
 </form>
 
+</div>
 </div>
 
 @endsection
