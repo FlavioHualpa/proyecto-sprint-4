@@ -1,0 +1,113 @@
+#contenedor {
+  background-image: url('../img/retina_wood_@2X.png');
+}
+
+.cart-container {
+  font-family: Mali;
+  text-align: center;
+  margin: 40px auto;
+  width: 800px;
+}
+
+.cart-container h2 {
+  text-align: left;
+  font-size: 30px;
+  margin-left: 16px;
+  margin-bottom: 30px;
+}
+
+.cart-container h4 {
+  margin-bottom: 8px;
+}
+
+.cart-row {
+  overflow: hidden;
+  height: 200px;
+  border-bottom: 1px solid #a0a0c0;
+  margin-bottom: 20px;
+}
+
+.cart-header {
+  overflow: hidden;
+  padding: 5px 0 0 0;
+  background-color: rgba(240, 240, 220, 0.6);
+  color: #806000;
+  border-bottom: 1px solid #e0e0f0;
+  margin-bottom: 20px;
+}
+
+.cart-footer {
+  overflow: hidden;
+  padding: 5px 0;
+  border: 2px solid #e0c0a0;
+  border-radius: 6px;
+  background-color: rgba(240, 240, 220, 0.4);
+}
+
+.item-image,
+.item-title,
+.item-price,
+.item-qty,
+.item-subtotal,
+.item-remove {
+  float: left;
+}
+
+.row-height {
+  height: 180px;
+}
+
+.flex-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.item-image {
+  width: 150px;
+}
+
+.item-image img {
+  height: 180px;
+}
+
+.item-title {
+  width: 200px;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.item-price,
+.item-qty,
+.item-remove {
+  width: 100px;
+}
+
+.item-qty {
+  align-items: center;
+}
+
+.item-qty input {
+  font-family: Mali;
+  font-size: 18px;
+  padding: 2px;
+  text-align: right;
+  width: 60px;
+}
+
+.item-subtotal {
+  width: 150px;
+}
+
+.item-remove a {
+  text-decoration: none;
+  padding: 6px 12px;
+  background-color: #304878;
+  color: white;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.item-remove a:hover {
+  background-color: #0090ff;
+}

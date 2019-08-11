@@ -11,7 +11,7 @@
   <section id="resultados">
     <h3>Resultados para '{{ $keywords }}'</h3>
 
-    @if (empty($books))
+    @if ($books->count() == 0)
       <div class="sin-resultados">
         <div>
           <img src="{{ asset('/img/no-results-1.png') }}" alt="no se encontraron resultados">
@@ -24,10 +24,6 @@
         </p>
       </div>
     @else
-      <form id="change-page-form" action="" method="get" style="display: none">
-        <input type="hidden" name="keywords" value="{{ $keywords }}">
-        <input type="hidden" name="page" value="">
-      </form>
       <h3>Mostrando resultados {{ $books->firstItem() }} a {{ $books->lastItem() }} de {{ $books->total() }}</h3>
       {{ $books->links() }}
       @foreach ($books as $book)

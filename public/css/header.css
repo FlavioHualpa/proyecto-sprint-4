@@ -223,6 +223,10 @@
    color: white;
 }
 
+#cart a {
+  text-decoration: none;
+}
+
 #cart i {
    margin-right: 5px;
    font-size: 22px;

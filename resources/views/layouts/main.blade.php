@@ -45,14 +45,16 @@
             </span>
           </div>
           <div id="cart">
-            <i class="fas fa-shopping-cart"></i>
-            <!--
-            en próximas versiones aquí vamos a consultar
-            el carrito del usuario en la base de datos
-            y traer la cantidad de productos guardados
-            en el carrito de compras
-            -->
-            <span>{{ Auth::user()->carts[0]->books->count() }}</span>
+            <a href="{{ url('cart/show') }}">
+              <i class="fas fa-shopping-cart"></i>
+              <!--
+              en próximas versiones aquí vamos a consultar
+              el carrito del usuario en la base de datos
+              y traer la cantidad de productos guardados
+              en el carrito de compras
+              -->
+              <span>{{ Auth::user()->carts[0]->books()->sum('quantity') }}</span>
+            </a>
           </div>
         </div>
       @else
@@ -81,7 +83,7 @@
 
       <ul id="menu-usuario">
         <li>
-          <a href="/user/profile?userid={{ Auth::user() ? Auth::user()->id : 0 }}">
+          <a href="/user/profile">
             <i class="fas fa-edit"></i>
             edite su perfil
           </a>
@@ -95,9 +97,15 @@
         </li>
         @else
         <li>
-          <a href="/user/books?userid={{ Auth::user() ? Auth::user()->id : 0 }}">
+          <a href="/user/favorites">
             <i class="fas fa-bookmark"></i>
-            mis libros
+            mis favoritos
+          </a>
+        </li>
+        <li>
+          <a href="/user/purchases">
+            <i class="fas fa-shopping-basket"></i>
+            mis compras
           </a>
         </li>
         @endif
@@ -146,6 +154,8 @@
         </ul>
         <p>
           Copyright <i class="fas fa-copyright"></i> ¿Qué Leo? S.A. Todos los derechos reservados.
+          <br>
+          <br>
         </p>
       </nav>
     </footer>

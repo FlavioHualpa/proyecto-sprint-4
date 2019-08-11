@@ -79,11 +79,18 @@ Route::get('/publishers', 'PublishersController@index');
 Route::get('/purchases', 'PurchasesController@index');
 
 
+Route::get('/book/add/{id}', 'CartsController@addProduct')->middleware('auth');
+Route::get('/cart/show', 'CartsController@index')->middleware('auth');
+Route::get('/cart/update', 'CartsController@update')->middleware('auth');
+
+Route::get('/user/profile')->middleware('auth');
+Route::get('/user/favorites')->middleware('auth');
+Route::get('/user/purchases')->middleware('auth');
 
 Route::get('/install', function(){
   Artisan::call('storage:link');
 });
 
 Route::get('/correrMigracion', function(){
- Artisan::call('migrate');
+  Artisan::call('migrate');
 });

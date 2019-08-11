@@ -147,6 +147,10 @@
    text-decoration: none;
 }
 
+.sin-resultados p a:hover {
+   color: #d00000;
+}
+
 .center {
   text-align: center;
 }

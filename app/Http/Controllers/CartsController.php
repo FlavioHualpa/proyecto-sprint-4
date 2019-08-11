@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use App\Http\Controllers\Auth;
 use App\Book;
 use App\Cart;
+use App\Genre;
 
 class CartsController extends Controller
 {
@@ -16,7 +18,32 @@ class CartsController extends Controller
      */
     public function index()
     {
-        //
+      // obtengo el id del usuario logueado
+      $userId = auth()->user()->id;
+
+      // obtengo el carrito del usuario logueado
+      // el id del carrito es igual al id del usuario
+      $cart = Cart::find($userId);
+
+      // obtengo los libros en el carrito del usuario
+      $books = $cart->books->all();
+
+      // obtengo la cantidad total de libros e importe
+      $totalBooks = $cart->books()->sum('quantity');
+      $totalAmount = $cart->books()->sum('subtotal');
+
+      // los géneros son para el header
+      $genres = Genre::orderBy('name')->get();
+
+      return view(
+        'cart',
+        [
+          'books' => $books,
+          'genres' => $genres,
+          'totalBooks' => $totalBooks,
+          'totalAmount' => $totalAmount,
+        ]
+      );
     }
 
     /**
@@ -86,39 +113,57 @@ class CartsController extends Controller
     }
 
     public function addProduct($id) {
+
+      // obtengo el id del usuario logueado
       $userId = auth()->user()->id;
+
+      // obtengo el libro que quiero agregar al carrito
       $book = Book::find($id);
 
+      // si el libro no existe no lo agrego
       if ($book) {
+
+        // obtengo el carrito del usuario logueado
+        // el id del carrito es igual al id del usuario
         $cart = Cart::find($userId);
-        $items = $cart->books()->where('book_id', $id)->get();
-        if ($items->count() == 0)
+
+        // consulto si el libro que el usuario quiere
+        // agregar al carrito existe en el carrito
+        $inCartProduct = $cart->books()->where('book_id', $id)->get();
+
+        // si no existe agrego una unidad, si existe
+        // aumento la cantidad y el subtotal
+        if ($inCartProduct->count() == 0)
         {
-          $cart->books()
-            ->attach($book, [
+          $cart->books()->attach(
+            $id,
+            [
               'quantity' => 1,
               'price' => $book->price,
               'subtotal' => $book->price,
               'created_at' => date('Y-m-d H:i:s'),
               'updated_at' => date('Y-m-d H:i:s'),
-             ]
-           );
+            ]
+          );
         }
         else
         {
-          $quantity = $items[0]->pivot->quantity;
-          $cart->books()
-            ->sync([
-              $id,
-              [
-              'quantity' => $quantity + 1,
-              'price' => $book->price,
-              'subtotal' => ($quantity + 1) * $book->price
+          $quantity = $inCartProduct[0]->pivot->quantity;
+          $cart->books()->syncWithoutDetaching(
+            [
+              $id => [
+                'quantity' => $quantity + 1,
+                'price' => $book->price,
+                'subtotal' => ($quantity + 1) * $book->price,
+                'updated_at' => date('Y-m-d H:i:s'),
               ]
-            ]);
+            ]
+          );
         }
       }
 
-      return redirect('/');
+      // como la acción de agregar al carrito implica un cambio de ruta
+      // regresamos a la ruta anterior para continuar donde estábamos
+      return back();
     }
 }

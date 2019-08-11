@@ -343,10 +343,11 @@ class BooksController extends Controller
   public function bookDetail($id) {
     $book = Book::find($id);
     $genres = Genre::orderBy('name')->get();
-    return view('show',
-      [ 'book' => $book,
-        'genres' => $genres
-      ]);
+    return view('show', [
+      'book' => $book,
+      'genres' => $genres
+      ]
+    );
   }
 
   public function selectByGenre(Request $request)
