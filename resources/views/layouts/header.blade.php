@@ -81,7 +81,7 @@
 
       <ul id="menu-usuario">
         <li>
-          <a href="/user/profile?userid={{ Auth::user() ? Auth::user()->id : 0 }}">
+          <a href="/user/profile">
             <i class="fas fa-edit"></i>
             edite su perfil
           </a>
@@ -94,12 +94,18 @@
           </a>
         </li>
         @else
-        <li>
-          <a href="/user/books?userid={{ Auth::user() ? Auth::user()->id : 0 }}">
-            <i class="fas fa-bookmark"></i>
-            mis libros
-          </a>
-        </li>
+          <li>
+            <a href="/user/favorites">
+              <i class="fas fa-bookmark"></i>
+              mis favoritos
+            </a>
+          </li>
+          <li>
+            <a href="/user/purchases">
+              <i class="fas fa-shopping-basket"></i>
+              mis compras
+            </a>
+          </li>
         @endif
         <li>
           <a href="/logout">
