@@ -81,7 +81,6 @@ class BooksController extends Controller
   */
   public function store(Request $request)
   {
-
     $book = $request->validate([
       'title' => 'required|string|max:100',
       'total_pages' => 'required|between:1,100000',
@@ -96,12 +95,12 @@ class BooksController extends Controller
       'resena' => 'required|string|max:4000',
       'isbn' => 'unique:books,isbn|max:9999999999999'
   ]);
+
       $url = $request->cover_img_url->store('/public/covers');
       $url = basename($url);
-
       $request->cover_img_url = $url;
 
-    Book::create( [
+      Book::create( [
       'title' => $request->title,
       'total_pages' => $request->total_pages,
       'price' => $request->price,
@@ -145,6 +144,7 @@ class BooksController extends Controller
     $authors = Author::orderBy('last_name')->get();
 
     $book = Book::find($id);
+
     return view('/admin/books/edit',[
       'book' => $book,
       'genres' => $genres,
@@ -179,7 +179,6 @@ class BooksController extends Controller
     ]);
     $book->total_pages = $request->total_pages;
   }
-
 
   if($request->price != $book->price){
   $request->validate([
@@ -256,7 +255,6 @@ class BooksController extends Controller
   $book->save();
 
   return redirect('/admin/books/list');
-
   }
 
 
@@ -354,57 +352,27 @@ class BooksController extends Controller
 
   public function selectByGenre(Request $request)
   {
-    $keywords = $request->input('keywords');
-    $searchString = '%' . $keywords . '%';
+    $selectedGenre = [
+      'id' => $request['id'],
+      'name' => $request['name']
+    ];
     $books = Book::join('genres', 'genres.id', '=', 'books.genre_id')
       ->join('languages', 'languages.id', '=', 'books.language_id')
       ->join('authors', 'authors.id', '=', 'books.author_id')
       ->join('publishers', 'publishers.id', '=', 'books.publisher_id')
-      ->where('books.title', 'like', $searchString)
-      ->orWhere('books.resena', 'like', $searchString)
-      ->orWhere('authors.first_name', 'like', $searchString)
-      ->orWhere('authors.last_name', 'like', $searchString)
-      ->orWhere('publishers.name', 'like', $searchString)
+      ->where('books.genre_id', 'like', $selectedGenre)
       ->select('books.*')
-      ->paginate(10)
-      ->appends('keywords', $keywords);
+      ->orderBy('ranking', 'asc')
+      ->paginate(10);
     $genres = Genre::orderBy('name')->get();
-    /*
-    $books = DB::select('SELECT books.id, title, total_pages,
-      price, cover_img_url, release_date,
-      languages.name AS language,
-      genres.name AS genre,
-      CONCAT(authors.first_name, " ", authors.last_name) AS author,
-      publishers.name AS publisher,
-      resena,
-      isbn
-      FROM books
-      INNER JOIN languages ON languages.id = books.language_id
-      INNER JOIN genres ON genres.id = books.genre_id
-      INNER JOIN authors ON authors.id = books.author_id
-      INNER JOIN publishers ON publishers.id = books.publisher_id
-      WHERE books.title LIKE ?
-      OR authors.first_name LIKE ?
-      OR authors.last_name LIKE ?
-      OR publishers.name LIKE ?
-      OR books.resena LIKE ?',
-      [ $searchString,
-      $searchString,
-      $searchString,
-      $searchString,
-      $searchString
-      ]
-    );
-    */
 
-    return view(
-      'search',
-      [
-        'keywords' => $keywords,
-        'books' => $books,
-        'genres' => $genres
-      ]
-    );
+
+    return view('selectByGenre', [
+      'books' => $books,
+      'genres' => $genres,
+      'selectedGenre' => $selectedGenre
+    ]);
   }
+
 
 }

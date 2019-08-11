@@ -73,7 +73,7 @@
       <ul id="menu-generos">
         @foreach($genres as $genre)
         <li>
-          <a href="browse/byGenre?genreid={{ $genre['id'] }}">
+          <a href="/selectByGenre/{{ $genre['id'] }}">
             <i class="fas fa-list"></i>
             {{ $genre['name'] }}
           </a>
