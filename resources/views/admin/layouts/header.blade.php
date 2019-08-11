@@ -21,26 +21,64 @@
 <body>
   <div id="contenedor">
     <header id="navegador">
-      <div id="admin-header-button">
-        <a href="/admin/books/create" class="create-book-button">CREAR</a>
-      </div>
+        <div id="admin-header-button">
+          <a href="/admin" class="front-end">PANEL</a>
+        </div>
+
+      <div id="boton-generos">
+        <span>
+          <i class="fas fa-list"></i>
+            CREAR
+          </span>
+          <i class="fas fa-arrow-down"></i>
+        </div>
 
       <div id="admin-header-button">
         <a href="/home" class="front-end">VISTA CLIENTE</a>
       </div>
 
-      <div id="buscador">
-        <form action="books/search" method="get">
-          <input type="text" name="keywords" placeholder="busque por título, autor o editorial">
-          <button type="submit"><i class="fas fa-search"></i></button>
-        </form>
-      </div>
+      <ul id="menu-generos">
+        <li>
+          <a href="/admin/authors/create">
+            <i class="fas fa-list"></i>
+            AUTORES
+          </a>
+        </li>
+        <li>
+          <a href="/admin/publishers/create">
+            <i class="fas fa-list"></i>
+            EDITORIALES
+          </a>
+        </li>
+        <li>
+          <a href="/admin/genres/create">
+            <i class="fas fa-list"></i>
+            GENEROS
+          </a>
+        </li>
+        <li>
+          <a href="/admin/languages/create">
+            <i class="fas fa-list"></i>
+            IDIOMAS
+          </a>
+        </li>
+        <li>
+          <a href="/admin/books/create">
+            <i class="fas fa-list"></i>
+            LIBROS
+          </a>
+        </li>
+      </ul>
     </header>
     <header id="encabezado">
       <h1>¿Qué Leo?</h1>
       <h3>Un espacio para descubrir</h3>
     </header>
 
+
     @yield('content')
   </div>
+  <script src="/js/headerAdmin.js">
+  </script>
+
 </body>

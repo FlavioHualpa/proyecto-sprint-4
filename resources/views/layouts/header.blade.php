@@ -71,7 +71,7 @@
       <ul id="menu-generos">
         @foreach($genres as $genre)
         <li>
-          <a href="browse/byGenre?genreid={{ $genre['id'] }}">
+          <a href="books/byGenre?genreid={{ $genre['id'] }}">
             <i class="fas fa-list"></i>
             {{ $genre['name'] }}
           </a>
@@ -86,12 +86,21 @@
             edite su perfil
           </a>
         </li>
+        @if (auth()->user()->role == 'admin')
+        <li>
+          <a href="/admin">
+            <i class="fas fa-bookmark"></i>
+            panel de control
+          </a>
+        </li>
+        @else
         <li>
           <a href="/user/books?userid={{ Auth::user() ? Auth::user()->id : 0 }}">
             <i class="fas fa-bookmark"></i>
             mis libros
           </a>
         </li>
+        @endif
         <li>
           <a href="/logout">
             <i class="fas fa-sign-out-alt"></i>

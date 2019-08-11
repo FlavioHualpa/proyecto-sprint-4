@@ -88,12 +88,21 @@
             edite su perfil
           </a>
         </li>
+        @if (auth()->user()->role == 'admin')
+        <li>
+          <a href="/admin">
+            <i class="fas fa-bookmark"></i>
+            panel de control
+          </a>
+        </li>
+        @else
         <li>
           <a href="/user/books?userid={{ Auth::user() ? Auth::user()->id : 0 }}">
             <i class="fas fa-bookmark"></i>
             mis libros
           </a>
         </li>
+        @endif
         <li>
           <a href="{{ route('logout') }}"
              onclick="event.preventDefault();

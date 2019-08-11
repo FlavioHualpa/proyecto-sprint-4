@@ -64,17 +64,17 @@ label[for="avatar_button"] {
 }
 
 .login fieldset p input[type="submit"],
-.registration fieldset p input[type="submit"] {
-  margin-top: 20px;
-  padding: 8px 18px;
-  border: none;
-  border-radius: 6px;
-  background-color: #0000c0;
-  color: white;
-  width: auto;
-  font-size: 26px;
-  cursor: pointer;
-}
+  .registration fieldset p input[type="submit"] {
+    margin-top: 20px;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 6px;
+    background-color: #0000c0;
+    color: white;
+    width: auto;
+    font-size: 26px;
+    cursor: pointer;
+  }
 
 .login fieldset p input[type="reset"],
 .registration fieldset p input[type="reset"] {
