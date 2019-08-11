@@ -9,23 +9,22 @@
 
 @section('content')
   <section id="resultados">
-    <h3>Resultados para '{{ $keywords }}'</h3>
-
-    @if (empty($books))
+    <h3>Resultados por género </h3>
+    @if ($books->total() == 0)
       <div class="sin-resultados">
         <div>
           <img src="{{ asset('/img/no-results-1.png') }}" alt="no se encontraron resultados">
           <span>No hay resultados</span>
         </div>
         <p>
-          Intente repetir la búsqueda con otras palabras
+          Intente repetir la búsqueda con otro género
           <br>
           O si prefiere puede regresar <a href="\">a la página principal</a>
         </p>
       </div>
     @else
       <form id="change-page-form" action="" method="get" style="display: none">
-        <input type="hidden" name="keywords" value="{{ $keywords }}">
+        <input type="hidden" name="selectedGenre" value="{{ $selectedGenre['name'] }}">
         <input type="hidden" name="page" value="">
       </form>
       <h3>Mostrando resultados {{ $books->firstItem() }} a {{ $books->lastItem() }} de {{ $books->total() }}</h3>
@@ -46,7 +45,7 @@
           </div>
           <p class="desc-1">{{ $book->title }}</p>
           <p class="desc-2">{{ $book->author->fullName() }}</p>
-          <p class="desc-3">{{ $book->publisher->name }}</p>
+          <p class="desc-3">{{ $book->genre->name }}</p>
           <p class="desc-4">{{ $book->resena }}</p>
           <span>
             <a href="/book/add/{{ $book->id }}">

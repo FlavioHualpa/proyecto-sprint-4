@@ -19,6 +19,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'BooksController@index');
 Route::get('/selectByGenre/{id}', 'BooksController@selectByGenre');
+Route::get('/book/{id}', 'BooksController@bookDetail');
+Route::get('/books/search', 'BooksController@search');
+Route::get('/book/{id}', 'BooksController@bookDetail');
+
+Route::get('/book/add/{id}', 'CartsController@addProduct')->middleware('auth');
 
 Route::get('/admin', 'BooksController@index')->middleware('role:admin');
 Route::get('/admin/authors', 'AuthorsController@list')->middleware('role:admin');
@@ -73,10 +78,7 @@ Route::get('/publishers', 'PublishersController@index');
 
 Route::get('/purchases', 'PurchasesController@index');
 
-Route::get('/books/search', 'BooksController@search');
-Route::get('/book/{id}', 'BooksController@bookDetail');
 
-Route::get('/book/add/{id}', 'CartsController@addProduct')->middleware('auth');
 
 Route::get('/install', function(){
   Artisan::call('storage:link');

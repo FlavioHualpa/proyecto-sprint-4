@@ -71,7 +71,7 @@
       <ul id="menu-generos">
         @foreach($genres as $genre)
         <li>
-          <a href="browse/byGenre?genreid={{ $genre['id'] }}">
+          <a href="/selectByGenre/{{ $genre['id'] }}">
             <i class="fas fa-list"></i>
             {{ $genre['name'] }}
           </a>
@@ -86,7 +86,7 @@
             edite su perfil
           </a>
         </li>
-        @if (auth()->user()->role == 'admin')
+        @if (Auth::user() && Auth()->user()->role == 'admin')
         <li>
           <a href="/admin">
             <i class="fas fa-bookmark"></i>
