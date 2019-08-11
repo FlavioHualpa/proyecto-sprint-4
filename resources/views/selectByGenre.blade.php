@@ -49,7 +49,7 @@
           <p class="desc-3">{{ $book->publisher->name }}</p>
           <p class="desc-4">{{ $book->resena }}</p>
           <span>
-            <a href="/book/add/{{ $book->id }}">
+            <a href="/cart/add/{{ $book->id }}">
               agregar al <i class="fas fa-shopping-cart"></i>
             </a>
           </span>

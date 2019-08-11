@@ -35,7 +35,7 @@
           <button type="submit"><i class="fas fa-search"></i></button>
         </form>
       </div>
-      @if (Auth::user())
+      @if (Auth::check())
         <div>
           <div id="user-options">
             <div class="avatar" style="background-image: url('/storage/avatars/{{ Auth::user()->avatar_url }}')">
@@ -86,7 +86,7 @@
             edite su perfil
           </a>
         </li>
-        @if (auth()->user()->role == 'admin')
+        @if (auth()->check() && auth()->user()->role == 'admin')
         <li>
           <a href="/admin">
             <i class="fas fa-bookmark"></i>

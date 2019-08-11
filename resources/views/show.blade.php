@@ -42,7 +42,7 @@
             <p>
               {{ $book['resena'] }}
             </p>
-            <a href="{{ url('book/add/' . $book->id) }}">agregar al <i class="fas fa-shopping-cart"></i></a>
+            <a href="{{ url('cart/add/' . $book->id) }}">agregar al <i class="fas fa-shopping-cart"></i></a>
           </div>
         </div>
         <div class="datos_detallados">
