@@ -81,15 +81,25 @@ class BooksController extends Controller
   */
   public function store(Request $request)
   {
-    if ($request->cover_img_url) {
-      $url = $request->cover_img_url->store('public/img/covers');
-      $url = basename($url);
-    }
-    else {
-      $url = null;
-    }
 
-    $request->cover_img_url = $url;
+    $book = $request->validate([
+      'title' => 'required|string|max:100',
+      'total_pages' => 'required|between:1,100000',
+      'price' => 'required|between:0,99999.99',
+      'cover_img_url' => 'file|image|dimensions:min_width=100,min_height=200,max_width=200,max_height=300|required',
+      'release_date' => 'required|before:now',
+      'genre_id' => 'required|numeric',
+      'author_id' => 'required|numeric',
+      'publisher_id' => 'required|numeric',
+      'language_id' => 'required|numeric',
+      'ranking' => 'required|between:0,300',
+      'resena' => 'required|string|max:4000',
+      'isbn' => 'unique:books,isbn|max:9999999999999'
+  ]);
+      $url = $request->cover_img_url->store('/public/covers');
+      $url = basename($url);
+
+      $request->cover_img_url = $url;
 
     Book::create( [
       'title' => $request->title,
@@ -105,7 +115,7 @@ class BooksController extends Controller
       'resena' => $request->resena,
       'isbn' => $request->isbn
     ]);
-    return redirect('/admin');
+    return redirect('/admin/books/list');
   }
 
   /**
@@ -154,34 +164,98 @@ class BooksController extends Controller
   */
   public function update(Request $request, $id)
   {
-    //    $this->validate();
-
     $book = Book::find($id);
-    if ($request->cover_img_url) {
-      $url = $request->cover_img_url->store('public/img/covers');
-      $url = basename($url);
-    }
-    else
-    {
-      $url = $book->cover_img_url;
-    }
-    $request->cover_img_url = $url;
 
-    $book->title = $request->title;
+    if($request->title != $book->title){
+    $request->validate([
+      'title' => 'required|string|max:100'
+     ]);
+     $book->title = $request->title;
+   }
+
+   if($request->total_pages != $book->total_pages){
+   $request->validate([
+     'total_pages' => 'required|between:1,100000',
+    ]);
     $book->total_pages = $request->total_pages;
-    $book->price = $request->price;
-    $book->cover_img_url = $request->cover_img_url;
-    $book->release_date = $request->release_date;
-    $book->genre_id = $request->genre_id;
-    $book->author_id = $request->author_id;
-    $book->publisher_id = $request->publisher_id;
-    $book->language_id = $request->language_id;
-    $book->ranking = $request->ranking;
-    $book->resena = $request->resena;
-    $book->isbn = $request->isbn;
+  }
 
-    $book->save();
-    return redirect('/admin');
+
+  if($request->price != $book->price){
+  $request->validate([
+    'price' => 'required|between:0,99999.99',
+   ]);
+   $book->price = $request->price;
+ }
+
+ if($request->cover_img_url){
+   $request->validate([
+     'cover_img_url' => 'file|image|dimensions:min_width=100,min_height=200,max_width=200,max_height=300|required'
+    ]);
+   $url = $request->cover_img_url->store('public/covers');
+   $url = basename($url);
+   $book->cover_img_url = $url;
+ }
+
+ if($request->release_date != $book->release_date){
+   $request->validate([
+     'release_date' => 'required|before:now',
+    ]);
+    $book->release_date = $request->release_date;
+ }
+
+ if($request->genre_id != $book->genre_id){
+   $request->validate([
+     'genre_id' => 'required|numeric',
+    ]);
+    $book->genre_id = $request->genre_id;
+ }
+
+ if($request->author_id != $book->author_id){
+   $request->validate([
+     'author_id' => 'required|numeric',
+    ]);
+    $book->author_id = $request->author_id;
+ }
+
+ if($request->publisher_id != $book->publisher_id){
+   $request->validate([
+     'publisher_id' => 'required|numeric',
+    ]);
+    $book->publisher_id = $request->publisher_id;
+ }
+
+ if($request->language_id != $book->language_id){
+   $request->validate([
+     'language_id' => 'required|numeric',
+    ]);
+    $book->language_id = $request->language_id;
+ }
+
+ if($request->ranking != $book->ranking){
+   $request->validate([
+     'ranking' => 'required|between:0,300',
+    ]);
+    $book->ranking = $request->ranking;
+ }
+
+ if($request->resena != $book->resena){
+   $request->validate([
+     'resena' => 'required|string|max:4000',
+    ]);
+    $book->resena = $request->resena;
+ }
+
+ if($request->isbn != $book->isbn){
+   $request->validate([
+      'isbn' => 'unique:books,isbn|max:9999999999999'
+    ]);
+    $book->isbn = $request->isbn;
+  }
+
+  $book->save();
+
+  return redirect('/admin/books/list');
 
   }
 
@@ -210,7 +284,7 @@ class BooksController extends Controller
   {
     $book=Book::find($id);
     $book->delete();
-    return redirect('/admin');
+    return redirect('/admin/books/list');
   }
 
   public function search(Request $request)
@@ -276,4 +350,60 @@ class BooksController extends Controller
         'genres' => $genres
       ]);
   }
+
+  public function selectByGenre(Request $request)
+  {
+    $keywords = $request->input('keywords');
+    $searchString = '%' . $keywords . '%';
+    $books = Book::join('genres', 'genres.id', '=', 'books.genre_id')
+      ->join('languages', 'languages.id', '=', 'books.language_id')
+      ->join('authors', 'authors.id', '=', 'books.author_id')
+      ->join('publishers', 'publishers.id', '=', 'books.publisher_id')
+      ->where('books.title', 'like', $searchString)
+      ->orWhere('books.resena', 'like', $searchString)
+      ->orWhere('authors.first_name', 'like', $searchString)
+      ->orWhere('authors.last_name', 'like', $searchString)
+      ->orWhere('publishers.name', 'like', $searchString)
+      ->select('books.*')
+      ->paginate(10)
+      ->appends('keywords', $keywords);
+    $genres = Genre::orderBy('name')->get();
+    /*
+    $books = DB::select('SELECT books.id, title, total_pages,
+      price, cover_img_url, release_date,
+      languages.name AS language,
+      genres.name AS genre,
+      CONCAT(authors.first_name, " ", authors.last_name) AS author,
+      publishers.name AS publisher,
+      resena,
+      isbn
+      FROM books
+      INNER JOIN languages ON languages.id = books.language_id
+      INNER JOIN genres ON genres.id = books.genre_id
+      INNER JOIN authors ON authors.id = books.author_id
+      INNER JOIN publishers ON publishers.id = books.publisher_id
+      WHERE books.title LIKE ?
+      OR authors.first_name LIKE ?
+      OR authors.last_name LIKE ?
+      OR publishers.name LIKE ?
+      OR books.resena LIKE ?',
+      [ $searchString,
+      $searchString,
+      $searchString,
+      $searchString,
+      $searchString
+      ]
+    );
+    */
+
+    return view(
+      'search',
+      [
+        'keywords' => $keywords,
+        'books' => $books,
+        'genres' => $genres
+      ]
+    );
+  }
+
 }

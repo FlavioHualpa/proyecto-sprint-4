@@ -15,9 +15,10 @@ use App\Genre;
 
 Auth::routes();
 
-Route::get('/', 'BooksController@index');
-
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/', 'BooksController@index');
+Route::get('/selectByGenre/{id}', 'BooksController@selectByGenre');
 
 Route::get('/admin', 'BooksController@index')->middleware('role:admin');
 Route::get('/admin/authors', 'AuthorsController@list')->middleware('role:admin');
@@ -28,7 +29,6 @@ Route::post('/admin/books/create', 'BooksController@store')->middleware('role:ad
 Route::get('/admin/books/edit/{id}', 'BooksController@edit')->middleware('role:admin');
 Route::post('/admin/books/edit/{id}', 'BooksController@update')->middleware('role:admin');
 Route::get('/admin/books/delete/{id}', 'BooksController@destroy')->middleware('role:admin');
-
 
 Route::get('/admin/authors/list', 'AuthorsController@list')->middleware('role:admin');
 Route::get('/admin/authors/show/{author}', 'AuthorsController@show')->middleware('role:admin');
@@ -56,7 +56,7 @@ Route::post('/admin/languages/edit/{id}', 'LanguagesController@update')->middlew
 Route::get('/admin/languages/delete/{id}', 'LanguagesController@destroy')->middleware('role:admin');
 
 Route::get('/admin/publishers/list', 'PublishersController@list')->middleware('role:admin');
-Route::get('/admin/publishers/show/{language}', 'PublishersController@show')->middleware('role:admin');
+Route::get('/admin/publishers/show/{publisher}', 'PublishersController@show')->middleware('role:admin');
 Route::get('/admin/publishers/create', 'PublishersController@create')->middleware('role:admin');
 Route::post('/admin/publishers/create', 'PublishersController@store')->middleware('role:admin');
 Route::get('/admin/publishers/edit/{id}', 'PublishersController@edit')->middleware('role:admin');

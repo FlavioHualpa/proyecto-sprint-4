@@ -4,16 +4,16 @@
 <body>
   <div id="contenedor_detalle">
     <section class="detalle_autor">
-<div class="">
-  <h2>Detalle de Autor</h2>
+<div class="create-title">
+  <h3>Detalle de Autor</h3>
 </div>
-        <div class="nombre">
-          <h3>
+        <div class="show-item">
+          <h4>
             Nombre: {{ $author['first_name'] }}
-          </h3>
-          <h3>
+          </h4>
+          <h4>
             Apellido: {{ $author['last_name'] }}
-          </h3>
+          </h4>
 
         </div>
       </div>

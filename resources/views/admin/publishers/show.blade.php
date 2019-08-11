@@ -4,13 +4,13 @@
 <body>
   <div id="contenedor_detalle">
     <section class="detalle_autor">
-      <div class="">
-        <h2>Detalle de Editoriales</h2>
+      <div class="create-title">
+        <h3>Detalle de Editoriales</h3>
       </div>
-      <div class="nombre">
-        <h3>
-          Idioma: {{ $publisher['name'] }}
-        </h3>
+      <div class="show-item">
+        <h4>
+          Editorial: {{ $publisher['name'] }}
+        </h4>
       </div>
       <div id="book-button">
         <a href="/admin/publishers/edit/{{$publisher->id}}" class="edit-book-link">EDITAR</a>

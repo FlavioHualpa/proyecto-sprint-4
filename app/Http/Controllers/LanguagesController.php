@@ -40,10 +40,14 @@ class LanguagesController extends Controller
 
      public function store(Request $request)
      {
+       $language = $request->validate([
+       'name' => 'required|string|max:20|unique:languages,name'
+     ]);
+
        Language::create([
          'name' => $request->name
        ]);
-       return redirect('/admin');
+       return redirect('/admin/languages/list');
      }
     /**
      * Store a newly created resource in storage.
@@ -90,10 +94,15 @@ class LanguagesController extends Controller
      {
        $language = Language::find($id);
 
+       if($request->name != $language->name){
+       $request->validate([
+       'name' => 'required|string|max:20|unique:languages,name'
+        ]);
+
        $language->name = $request->name;
        $language->save();
-       return redirect('/admin');
-
+      }
+      return redirect('/admin/languages/list');
      }
 
     /**
@@ -106,6 +115,6 @@ class LanguagesController extends Controller
      {
        $language = Language::find($id);
        $language->delete();
-       return redirect('/admin');
+       return redirect('/admin/languages/list');
      }
 }

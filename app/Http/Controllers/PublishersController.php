@@ -16,9 +16,9 @@ class PublishersController extends Controller
     public function index()
     {
       $publishers = Publisher::all();
-
       return $publishers;
     }
+
     public function list()
     {
       $publishers = Publisher::orderBy('name')
@@ -45,10 +45,15 @@ class PublishersController extends Controller
      */
      public function store(Request $request)
      {
+       $publisher = $request->validate([
+       'name' => 'required|string|max:100|unique:publishers,name'
+     ]);
+
        Publisher::create([
          'name' => $request->name
        ]);
-       return redirect('/admin');
+
+       return redirect('/admin/publishers/list');
      }
 
     /**
@@ -87,12 +92,19 @@ class PublishersController extends Controller
      public function update(Request $request, $id)
      {
        $publisher = Publisher::find($id);
+       if($request->name != $publisher->name){
+       $request->validate([
+       'name' => 'required|string|max:100|unique:publishers,name'
+        ]);
 
        $publisher->name = $request->name;
        $publisher->save();
-       return redirect('/admin');
+      }
+
+       return redirect('/admin/publishers/list');
 
      }
+
 
     /**
      * Remove the specified resource from storage.
@@ -102,6 +114,8 @@ class PublishersController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $publisher = Publisher::find($id);
+      $publisher->delete();
+      return redirect('/admin/publishers/list');
     }
 }

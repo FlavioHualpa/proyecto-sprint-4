@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Author;
+use Illuminate\Support\Facades\Validator;
 
 class AuthorsController extends Controller
 {
@@ -13,13 +14,14 @@ class AuthorsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
       $authors = Author::orderBy('last_name')
       ->paginate(20);
-
       return $authors;
     }
+
     public function list()
     {
       $authors = Author::orderBy('last_name')
@@ -28,20 +30,15 @@ class AuthorsController extends Controller
         'authors' => $authors
       ]);
     }
-
-
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-
       public function create()
       {
         return view('/admin/authors/create');
       }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -50,13 +47,18 @@ class AuthorsController extends Controller
      */
     public function store(Request $request)
     {
-      Author::create([
+        $author = $request->validate([
+        'first_name' => 'required|string|max:50',
+        'last_name' => 'required|string|max:50'
+      ]);
+
+        Author::create([
         'first_name' => $request->first_name,
         'last_name' => $request->last_name
       ]);
-      return redirect('/admin');
-    }
 
+      return redirect('/admin/authors/list');
+    }
     /**
      * Display the specified resource.
      *
@@ -96,10 +98,18 @@ class AuthorsController extends Controller
     {
       $author = Author::find($id);
 
+      if(($request->first_name != $author->first_name)||($request->last_name != $author->last_name)){
+      $request->validate([
+      'first_name' => 'required|string|max:50',
+      'last_name' => 'required|string|max:50'
+       ]);
+
+
       $author->first_name = $request->first_name;
       $author->last_name = $request->last_name;
       $author->save();
-      return redirect('/admin');
+    }
+    return redirect('/admin/authors/list');
 
     }
 
@@ -114,7 +124,7 @@ class AuthorsController extends Controller
     {
       $author = Author::find($id);
       $author->delete();
-      return redirect('/admin');
+      return redirect('/admin/authors/list');
     }
 
 }

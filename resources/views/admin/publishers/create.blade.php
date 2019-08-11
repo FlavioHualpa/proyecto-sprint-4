@@ -13,6 +13,9 @@
         <label for="name">Editorial:</label>
         <input type="text" name="name" value="">
       </p>
+      @error('name')
+      <p class="error-regist"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>
+      @enderror
       <button type="submit" class="store">
         Guardar
       </button>

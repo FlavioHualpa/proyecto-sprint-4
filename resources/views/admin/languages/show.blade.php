@@ -4,13 +4,13 @@
 <body>
   <div id="contenedor_detalle">
     <section class="detalle_autor">
-      <div class="">
-        <h2>Detalle de Idiomas</h2>
+      <div class="create-title">
+        <h3>Detalle de Idiomas</h3>
       </div>
-      <div class="nombre">
-        <h3>
+      <div class="show-item">
+        <h4>
           Idioma: {{ $language['name'] }}
-        </h3>
+        </h4>
       </div>
       <div id="book-button">
         <a href="/admin/languages/edit/{{$language->id}}" class="edit-book-link">EDITAR</a>

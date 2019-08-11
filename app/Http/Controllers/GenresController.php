@@ -48,10 +48,14 @@ class GenresController extends Controller
      */
      public function store(Request $request)
      {
+       $genre = $request->validate([
+       'name' => 'required|string|max:50|unique:genres,name'
+     ]);
+
        Genre::create([
          'name' => $request->name
        ]);
-       return redirect('/admin');
+       return redirect('/admin/genres/list');
      }
 
     /**
@@ -93,9 +97,15 @@ class GenresController extends Controller
      {
        $genre = Genre::find($id);
 
+       if($request->name != $genre->name){
+       $request->validate([
+       'name' => 'required|string|max:50|unique:genres,name'
+        ]);
+
        $genre->name = $request->name;
        $genre->save();
-       return redirect('/admin');
+     }
+     return redirect('/admin/genres/list');
 
      }
 
@@ -110,6 +120,6 @@ class GenresController extends Controller
      {
        $genre = Genre::find($id);
        $genre->delete();
-       return redirect('/admin');
+       return redirect('/admin/genres/list');
      }
 }
