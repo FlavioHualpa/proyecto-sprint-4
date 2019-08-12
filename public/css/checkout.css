@@ -1,0 +1,76 @@
+#contenedor {
+  background-image: url('../img/retina_wood_@2X.png');
+}
+
+.checkout-container {
+  font-family: Mali;
+  margin: 40px auto;
+  padding: 40px;
+  width: 350px;
+  border: 1px solid #0090ff;
+  border-radius: 6px;
+  background-color: rgba(0, 128, 240, 0.2);
+}
+
+.checkout-container h2 {
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+.checkout-container .checkout-col-lft,
+.checkout-container .checkout-col-rgt {
+  width: 250px;
+  font-size: 20px;
+  display: inline-block;
+}
+
+.checkout-container .checkout-col-lft {
+  font-weight: bold;
+}
+
+.checkout-container .checkout-col-rgt {
+  margin-bottom: 10px;
+}
+
+.finalize-button,
+.back-button {
+  padding: 6px 20px;
+  text-decoration: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 20px;
+}
+
+.finalize-button {
+  background-color: #00a800;
+}
+
+.back-button {
+  background-color: #787878;
+}
+
+.finalize-button:hover {
+  background-color: #00d000;
+}
+
+.back-button:hover {
+  background-color: #a0a0a0;
+}
+
+@media screen and (min-width: 600px)
+{
+  .checkout-container {
+    width: 600px;
+  }
+
+  .checkout-container .checkout-col-rgt {
+    text-align: right;
+  }
+}
+
+@media screen and (min-width: 900px)
+{
+  .checkout-container {
+    width: 800px;
+  }
+}

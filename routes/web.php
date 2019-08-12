@@ -82,8 +82,10 @@ Route::get('/purchases', 'PurchasesController@index');
 Route::get('/cart/add/{id}', 'CartsController@addProduct')->middleware('auth');
 Route::get('/cart/remove/{id}', 'CartsController@removeProduct')->middleware('auth');
 Route::get('/cart/show', 'CartsController@index')->middleware('auth');
-Route::get('/cart/update', 'CartsController@update')->middleware('auth');
-Route::get('/cart/checkout', 'CartsController@checkout')->middleware('auth');
+Route::post('/cart/update', 'CartsController@update')->middleware('auth');
+Route::post('/cart/checkout', 'CartsController@checkout')->middleware('auth');
+
+Route::get('/purchase/finalize', 'PurchasesController@store')->middleware('auth');
 
 Route::get('/user/profile')->middleware('auth');
 Route::get('/user/favorites')->middleware('auth');

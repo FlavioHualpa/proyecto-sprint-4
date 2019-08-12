@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Publisher;
+use App\Purchase;
+use App\Cart;
+use App\Genre;
 
 class PurchasesController extends Controller
 {
@@ -38,7 +40,44 @@ class PurchasesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      // obtengo el id del usuario logueado
+      $userId = auth()->user()->id;
+
+      // obtengo el carrito del usuario logueado
+      // el que está guardado en la base de datos
+      // y lo voy a actualizar con los datos que
+      // llegan con el formulario de la vista del carrito
+      $cart = Cart::find($userId);
+
+      $invoiceNumber = Purchase::max('invoice_number');
+      $invoiceNumber = $invoiceNumber ? $invoiceNumber + 1 : 10000;
+      $purchase = Purchase::create(
+        [
+          'user_id' => $userId,
+          'invoice_number' => $invoiceNumber,
+          'created_at' => date('Y-m-d H:i:s'),
+          'updated_at' => date('Y-m-d H:i:s'),
+        ]
+      );
+
+      foreach ($cart->books->all() as $book) {
+        $purchase->books()->attach(
+          $book->id,
+          [
+            'quantity' => $book->pivot->quantity,
+            'price' => $book->pivot->price,
+            'subtotal' => $book->pivot->quantity * $book->pivot->price,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+          ]
+        );
+      }
+
+      // luego de registrar la compra vaciamos el carrito
+      $cart->books()->detach();
+
+      $genres = Genre::orderBy('name')->get();
+      return view('success', [ 'genres' => $genres ]);
     }
 
     /**

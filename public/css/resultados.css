@@ -1,12 +1,16 @@
+#contenedor {
+  background-image: url('../img/retina_wood_@2X.png');
+}
+
 #resultados {
-   width: 100%;
-   margin: 30px 0;
+  width: 100%;
+  margin: 30px 0;
 }
 
 #resultados h3 {
-   font-family: Mali;
-   font-size: 24px;
-   margin-bottom: 20px;
+  font-family: Mali;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 .pagination {
