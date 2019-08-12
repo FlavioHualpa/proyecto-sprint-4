@@ -35,7 +35,7 @@ class Book extends Model
 
   public function purchases()
   {
-    return $this->belongsToMany(Purchase::class);
+    return $this->belongsToMany(Purchase::class)->withPivot(['quantity', 'price', 'subtotal']);
   }
 
   public function carts()

@@ -69,7 +69,7 @@
             <img src="{!! '/storage/covers/' . $libro['cover_img_url'] !!}" alt="{{ $libro['title'] }}">
             <h4>{{ $libro['title'] }}</h4>
             <div class="ver-mas">
-              <a href="/book/?bookid={{ $libro['id'] }}">
+              <a href="/book/{{ $libro['id'] }}">
                 <i class="fas fa-eye"></i>
                 <span>
                    VER DETALLES
@@ -79,7 +79,7 @@
           </div>
           <div class="pie-de-articulo">
             <span>{{ '$ ' . $libro['price'] }}</span>
-            <a href="#">agregar al <i class="fas fa-shopping-cart"></i></a>
+            <a href="{{ '/cart/add/' . $libro->id }}">agregar al <i class="fas fa-shopping-cart"></i></a>
           </div>
         </article>
         @endforeach

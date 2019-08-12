@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth;
 use App\Book;
 use App\Cart;
 use App\Genre;
+use App\Purchase;
 
 class CartsController extends Controller
 {
@@ -89,6 +90,51 @@ class CartsController extends Controller
         //
     }
 
+    private function updateCartData(Request $request)
+    {
+      // compruebo que un usuario esté logueado
+      if (auth()->check()) {
+
+        // obtengo el id del usuario logueado
+        $userId = auth()->user()->id;
+
+        // obtengo el carrito del usuario logueado
+        // el que está guardado en la base de datos
+        // y lo voy a actualizar con los datos que
+        // llegan con el formulario de la vista del carrito
+        $cart = Cart::find($userId);
+
+        // recorro los campos del formulario para obtener
+        // el dato (la cantidad de cada libro) para
+        // actualizar el carrito.
+        // si la cantidad es cero, quito el elemento del
+        // carrito sino actualizo la cantidad y el subtotal
+        foreach ($request->all() as $key => $value) {
+          if ($key == '_token') continue;
+          $parts = explode('-', $key);
+          $book = Book::find($parts[1]);
+          $quantity = intval($value);
+
+          if ($quantity == 0) {
+            $cart->books()->detach($book->id);
+          }
+          else {
+            // dd(['book_id' => $book->id, 'quantity' => $quantity, 'subtotal' => $quantity * $book->price]);
+            $cart->books()->syncWithoutDetaching(
+              [
+                $book->id =>
+                [
+                  'quantity' => $quantity,
+                  'subtotal' => $quantity * $book->price,
+                  'updated_at' => date('Y-m-d H:i:s')
+                ]
+              ]
+            );
+          }
+        }
+      }
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -96,9 +142,30 @@ class CartsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+      $this->updateCartData($request);
+      return back();
+    }
+
+    public function checkout(Request $request)
+    {
+      $this->updateCartData($request);
+      $genres = Genre::orderBy('name')->get();
+      $userId = auth()->user()->id;
+      $cart = Cart::find($userId);
+      $invoiceNumber = Purchase::max('invoice_number');
+
+      return view(
+        'checkout',
+        [
+          'genres' => $genres,
+          'totalBooks' => $cart->books()->sum('quantity'),
+          'totalAmount' => $cart->books()->sum('subtotal'),
+          'invoiceNumber' => $invoiceNumber ? $invoiceNumber + 1 : 10000,
+          'userName' => auth()->user()->first_name
+        ]
+      );
     }
 
     /**

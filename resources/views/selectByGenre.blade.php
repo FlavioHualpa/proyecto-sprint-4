@@ -9,7 +9,7 @@
 
 @section('content')
   <section id="resultados">
-    <h3>Resultados por género </h3>
+    <h3>Resultados para el género {{ $selectedGenre['name'] }}</h3>
     @if ($books->total() == 0)
       <div class="sin-resultados">
         <div>

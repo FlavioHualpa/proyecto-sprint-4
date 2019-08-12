@@ -30,6 +30,12 @@
       </div>
     </div>
 
+    <!-- en este formulario enviamos los datos finales
+    **** del carrito para ser procesados luego -->
+    <form action="" method="post" id="cart-data" style="display: none">
+      @csrf
+    </form>
+
     <!-- los items del carrito -->
     @forelse ($books as $book)
     <article class="cart-row">
@@ -48,7 +54,7 @@
           <h3>$ {{ number_format($book->price, 2) }}</h3>
         </div>
         <div class="item-qty row-height-sm flex-center">
-          <input type="number" min="0" max="10" name="quantity" value="{{ $book->pivot->quantity }}">
+          <input type="number" min="0" max="10" name="quantity-{{ $book->id }}" value="{{ $book->pivot->quantity }}" form="cart-data">
         </div>
       </div>
       <div class="cart-col">
@@ -75,8 +81,8 @@
 
     <!-- los botones de comprar y actualizar carrito -->
     <div class="cart-buttons">
-      <a href="{{ url('cart/checkout') }}" class="buy-button">Comprar libros</a>
-      <a href="{{ url('cart/update') }}" class="update-button">Actualizar carrito</a>
+      <a href="{{ url('cart/checkout') }}" class="buy-button" onclick="event.preventDefault(); document.querySelector('#cart-data').setAttribute('action', '/cart/checkout'); document.querySelector('#cart-data').submit();">Resumen de compra</a>
+      <a href="{{ url('cart/update') }}" class="update-button" onclick="event.preventDefault(); document.querySelector('#cart-data').setAttribute('action', '/cart/update'); document.querySelector('#cart-data').submit();">Actualizar carrito</a>
     </div>
   </section>
 @endsection

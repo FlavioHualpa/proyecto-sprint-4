@@ -350,12 +350,19 @@ class BooksController extends Controller
     );
   }
 
-  public function selectByGenre(Request $request)
+  public function selectByGenre($id)
   {
+    $genre = Genre::find($id);
+
+    if (blank($genre)) {
+      return back();
+    }
+
     $selectedGenre = [
-      'id' => $request['id'],
-      'name' => $request['name']
+      'id' => $id,
+      'name' => $genre->name
     ];
+
     $books = Book::join('genres', 'genres.id', '=', 'books.genre_id')
       ->join('languages', 'languages.id', '=', 'books.language_id')
       ->join('authors', 'authors.id', '=', 'books.author_id')
