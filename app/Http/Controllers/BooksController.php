@@ -373,6 +373,4 @@ class BooksController extends Controller
       'selectedGenre' => $selectedGenre
     ]);
   }
-
-
 }

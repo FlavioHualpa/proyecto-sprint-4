@@ -9,6 +9,9 @@
   <div class='create-form'>
     <form class="create-book" action="/admin/books/edit/{{ $book->id }}" method="post" enctype="multipart/form-data">
       @csrf
+      @error('submit')
+      <p class="error-regist">{{ $message }}</p>
+      @enderror
       <p>
         <label for="title">Título:</label>
         <input type="text" name="title" value="{{ old('title', $book->title) }}">

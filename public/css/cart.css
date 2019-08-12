@@ -44,6 +44,11 @@
   background-color: rgba(240, 240, 220, 0.4);
 }
 
+.botones-favoritos {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 .item-image,
 .item-title,
 .item-price,

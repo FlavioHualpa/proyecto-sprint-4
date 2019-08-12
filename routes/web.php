@@ -22,8 +22,10 @@ Route::get('/selectByGenre/{id}', 'BooksController@selectByGenre');
 Route::get('/book/{id}', 'BooksController@bookDetail');
 Route::get('/books/search', 'BooksController@search');
 Route::get('/book/{id}', 'BooksController@bookDetail');
-
 Route::get('/book/add/{id}', 'CartsController@addProduct')->middleware('auth');
+Route::get('/book/addFavorite/{id}', 'FavoritesController@addFavorite')->middleware('auth');
+Route::get('/user/listFavorites', 'FavoritesController@listFavorite')->middleware('auth');
+Route::get('/user/deleteFavorites/{id}', 'FavoritesController@destroyFavorite');
 
 Route::get('/admin', 'BooksController@index')->middleware('role:admin');
 Route::get('/admin/authors', 'AuthorsController@list')->middleware('role:admin');
@@ -94,3 +96,7 @@ Route::get('/install', function(){
 Route::get('/correrMigracion', function(){
   Artisan::call('migrate');
 });
+
+
+//Route::get('/user/edit/{id}', 'RegisterController@edit');
+//Route::post('/user/edit/{id}', 'RegisterController@update');
