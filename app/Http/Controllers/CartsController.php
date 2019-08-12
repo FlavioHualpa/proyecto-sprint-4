@@ -202,7 +202,7 @@ class CartsController extends Controller
         // aumento la cantidad y el subtotal
         if ($inCartProduct->count() == 0)
         {
-          $cart->books()->attach(
+            $cart->books()->attach(
             $id,
             [
               'quantity' => 1,

@@ -49,6 +49,12 @@
   background-color: rgba(240, 240, 220, 0.4);
 }
 
+.botones-favoritos {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 .cart-buttons {
   overflow: hidden;
   padding: 20px 0;

@@ -43,9 +43,9 @@ class User extends Authenticatable
       return $this->belongsTo(Country::class);
     }
 
-    public function favorites()
+    public function books()
     {
-      return $this->belongsToMany(Book::class, 'favorites');
+      return $this->belongsToMany(Book::class, 'favorites', 'user_id', 'book_id');
     }
 
     public function carts()

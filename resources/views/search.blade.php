@@ -35,7 +35,7 @@
             <br>
             <span>$ {{ number_format($book->price, 2) }}</span>
             <br>
-            <a href="#">
+            <a href="{{ url('book/addFavorite/' . $book->id) }}">
               <i class="fas fa-bookmark"></i>
               Agregar a mis libros
             </a>

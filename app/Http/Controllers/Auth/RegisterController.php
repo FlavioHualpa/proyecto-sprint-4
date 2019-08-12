@@ -133,4 +133,21 @@ class RegisterController extends Controller
         ]
       );
     }
+
+    // protected function edit($id)
+    // {
+    //   $user = User::find($id);
+    //   $genres = Genre::orderBy('name')->get();
+    //   $countries = Country::orderBy('name')->get();
+    //
+    //   return view(
+    //     'auth.edit',
+    //     [ 'countries' => $countries,
+    //       'genres' => $genres,
+    //       'user' => $user
+    //     ]);
+    //   }
+
+
+
 }

@@ -80,8 +80,9 @@
       </ul>
 
       <ul id="menu-usuario">
+        @if (Auth::user())
         <li>
-          <a href="/user/profile">
+          <a href="{{ '/user/edit/' . auth()->user()->id }}">
             <i class="fas fa-edit"></i>
             edite su perfil
           </a>
@@ -95,7 +96,7 @@
         </li>
         @else
           <li>
-            <a href="/user/favorites">
+            <a href="/user/listFavorites">
               <i class="fas fa-bookmark"></i>
               mis favoritos
             </a>
