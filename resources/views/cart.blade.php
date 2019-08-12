@@ -13,7 +13,7 @@
 
     <!-- los encabezados -->
     <div class="cart-header">
-      <div class="item-image">
+      <div class="item-image" style="margin-bottom: 0">
         <h4>Libro</h4>
       </div>
       <div class="item-title">
@@ -25,55 +25,58 @@
       <div class="item-qty">
         <h4>Cantidad</h4>
       </div>
-      <div class="item-subtotal">
+      <div class="item-subtotal display-style">
         <h4>Subtotal</h4>
       </div>
     </div>
 
     <!-- los items del carrito -->
     @forelse ($books as $book)
-    <div class="cart-row">
-      <div class="item-image row-height">
-        <img src="{{ asset('storage/covers/' . $book->cover_img_url) }}" alt="{{ $book->title }}">
+    <article class="cart-row">
+      <div class="cart-col">
+        <div class="item-image row-height">
+          <img src="{{ asset('storage/covers/' . $book->cover_img_url) }}" alt="{{ $book->title }}">
+        </div>
+        <div class="item-title row-height flex-center">
+          <h4>{{ $book->title }}</h4>
+          <h5>{{ $book->author->fullName() }}</h5>
+          <h5>{{ $book->publisher->name }}</h5>
+        </div>
       </div>
-      <div class="item-title row-height flex-center">
-        <h4>{{ $book->title }}</h4>
-        <h5>{{ $book->author->fullName() }}</h5>
-        <h5>{{ $book->publisher->name }}</h5>
+      <div class="cart-col">
+        <div class="item-price row-height-sm flex-center">
+          <h3>$ {{ number_format($book->price, 2) }}</h3>
+        </div>
+        <div class="item-qty row-height-sm flex-center">
+          <input type="number" min="0" max="10" name="quantity" value="{{ $book->pivot->quantity }}">
+        </div>
       </div>
-      <div class="item-price row-height flex-center">
-        <h3>$ {{ number_format($book->price, 2) }}</h3>
+      <div class="cart-col">
+        <div class="item-subtotal row-height-sm flex-center">
+          <h3>$ {{ number_format($book->price * $book->pivot->quantity, 2) }}</h3>
+        </div>
+        <div class="item-remove row-height-sm flex-center">
+          <a href="{{ url('cart/remove/' . $book->id) }}">Quitar</a>
+        </div>
       </div>
-      <div class="item-qty row-height flex-center">
-        <input type="number" min="0" max="10" name="quantity" value="{{ $book->pivot->quantity }}">
-      </div>
-      <div class="item-subtotal row-height flex-center">
-        <h3>$ {{ number_format($book->price * $book->pivot->quantity, 2) }}</h3>
-      </div>
-      <div class="item-remove row-height flex-center">
-        <a href="{{ url('book/remove/' . $book->id) }}">Quitar</a>
-      </div>
-    </div>
+    </article>
     @empty
     @endforelse
 
     <!-- los totales -->
     <div class="cart-footer">
-      <div class="item-image">
-        <p>&nbsp;</p>
+      <div>
+        <h3>Cantidad de libros: {{ $totalBooks }}</h3>
       </div>
-      <div class="item-title">
-        <h3>Cantidad de libros:</h3>
+      <div>
+        <h3>Importe total: $ {{ number_format($totalAmount, 2) }}</h3>
       </div>
-      <div class="item-price">
-        <h3>{{ $totalBooks }}</h3>
-      </div>
-      <div class="item-qty">
-        <h3>Total:</h3>
-      </div>
-      <div class="item-subtotal">
-        <h3>$ {{ number_format($totalAmount, 2) }}</h3>
-      </div>
+    </div>
+
+    <!-- los botones de comprar y actualizar carrito -->
+    <div class="cart-buttons">
+      <a href="{{ url('cart/checkout') }}" class="buy-button">Comprar libros</a>
+      <a href="{{ url('cart/update') }}" class="update-button">Actualizar carrito</a>
     </div>
   </section>
 @endsection

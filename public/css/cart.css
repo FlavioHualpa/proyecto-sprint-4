@@ -6,7 +6,7 @@
   font-family: Mali;
   text-align: center;
   margin: 40px auto;
-  width: 800px;
+  width: 350px;
 }
 
 .cart-container h2 {
@@ -22,12 +22,17 @@
 
 .cart-row {
   overflow: hidden;
-  height: 200px;
   border-bottom: 1px solid #a0a0c0;
   margin-bottom: 20px;
 }
 
+.cart-col {
+  overflow: hidden;
+  float: left;
+}
+
 .cart-header {
+  display: none;
   overflow: hidden;
   padding: 5px 0 0 0;
   background-color: rgba(240, 240, 220, 0.6);
@@ -37,8 +42,8 @@
 }
 
 .cart-footer {
-  overflow: hidden;
-  padding: 5px 0;
+  text-align: center;
+  padding: 8px 16px;
   border: 2px solid #e0c0a0;
   border-radius: 6px;
   background-color: rgba(240, 240, 220, 0.4);
@@ -49,6 +54,39 @@
   flex-direction: row;
   justify-content: space-around;
 }
+
+.cart-buttons {
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+.cart-buttons .buy-button,
+.cart-buttons .update-button {
+  display: block;
+  padding: 6px 20px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 20px;
+}
+
+.cart-buttons .buy-button {
+  background-color: #00a800;
+}
+
+.cart-buttons .update-button {
+  background-color: #787878;
+}
+
+.cart-buttons .buy-button:hover {
+  background-color: #00d000;
+}
+
+.cart-buttons .update-button:hover {
+  background-color: #a0a0a0;
+}
+
 .item-image,
 .item-title,
 .item-price,
@@ -60,6 +98,10 @@
 
 .row-height {
   height: 180px;
+}
+
+.row-height-sm {
+  height: 60px;
 }
 
 .flex-center {
@@ -101,6 +143,7 @@
 }
 
 .item-subtotal {
+  display: none;
   width: 150px;
 }
 
@@ -115,4 +158,50 @@
 
 .item-remove a:hover {
   background-color: #0090ff;
+}
+
+@media screen and (min-width: 600px)
+{
+  .cart-container {
+    width: 600px;
+  }
+
+  .cart-header {
+    display: block;
+  }
+
+  .item-image {
+    margin-bottom: 20px;
+  }
+
+  .display-style {
+    display: none;
+  }
+
+  .cart-buttons .buy-button {
+    float: left;
+  }
+
+  .cart-buttons .update-button {
+    float: right;
+  }
+}
+
+@media screen and (min-width: 900px)
+{
+  .cart-container {
+    width: 800px;
+  }
+
+  .item-subtotal {
+    display: flex;
+  }
+
+  .row-height-sm {
+    height: 180px;
+  }
+
+  .display-style {
+    display: block;
+  }
 }

@@ -166,4 +166,21 @@ class CartsController extends Controller
       // regresamos a la ruta anterior para continuar donde estábamos
       return back();
     }
+
+    public function removeProduct($id) {
+
+      // obtengo el id del usuario logueado
+      $userId = auth()->user()->id;
+
+      // obtengo el carrito del usuario logueado
+      // el id del carrito es igual al id del usuario
+      $cart = Cart::find($userId);
+
+      // elimino el libro (con el id pasado a la función)
+      // del carrito
+      $cart->books()->detach($id);
+
+      // regresamos a la ruta anterior para continuar donde estábamos
+      return back();
+    }
 }

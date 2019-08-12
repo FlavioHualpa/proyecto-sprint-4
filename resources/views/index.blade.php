@@ -43,7 +43,7 @@
           </div>
           <div class="pie-de-articulo">
             <span>{{ '$ ' . $libro['price'] }}</span>
-            <a href="{{ '/book/add/' . $libro->id }}">agregar al <i class="fas fa-shopping-cart"></i></a>
+            <a href="{{ '/cart/add/' . $libro->id }}">agregar al <i class="fas fa-shopping-cart"></i></a>
           </div>
         </article>
         @endforeach
