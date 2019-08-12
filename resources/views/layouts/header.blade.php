@@ -82,7 +82,7 @@
       <ul id="menu-usuario">
         @if (Auth::user())
         <li>
-          <a href="{{ '/user/edit/' . auth()->user()->id }}">
+          <a href="/user/profile">
             <i class="fas fa-edit"></i>
             edite su perfil
           </a>
