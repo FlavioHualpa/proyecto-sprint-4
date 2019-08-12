@@ -80,7 +80,6 @@
       </ul>
 
       <ul id="menu-usuario">
-        @if (Auth::user())
         <li>
           <a href="/user/profile">
             <i class="fas fa-edit"></i>
