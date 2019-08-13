@@ -43,7 +43,7 @@ class Book extends Model
     return $this->belongsToMany(Cart::class)->withPivot(['quantity', 'price', 'subtotal']);
   }
 
-  public function users()
+  public function favoriteOfUsers()
   {
       return $this->belongsToMany(User::class, 'favorites', 'book_id', 'user_id');
   }

@@ -96,20 +96,19 @@
           </a>
         </li>
         @else
-        <li>
-          <a href="/user/listFavorites">
-            <i class="fas fa-bookmark"></i>
-            mis favoritos
-          </a>
-        </li>
-        <li>
-          <a href="/user/purchases">
-            <i class="fas fa-shopping-basket"></i>
-            mis compras
-          </a>
-        </li>
-      @endif
-
+          <li>
+            <a href="/user/favorites">
+              <i class="fas fa-bookmark"></i>
+              mis favoritos
+            </a>
+          </li>
+          <li>
+            <a href="/user/purchases">
+              <i class="fas fa-shopping-basket"></i>
+              mis compras
+            </a>
+          </li>
+        @endif
         <li>
           <a href="/logout">
             <i class="fas fa-sign-out-alt"></i>

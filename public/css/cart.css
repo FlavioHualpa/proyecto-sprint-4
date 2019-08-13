@@ -204,6 +204,41 @@
   background-color: #0090ff;
 }
 
+.empty-cart {
+  width: 450px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.empty-cart img {
+  width: 240px;
+}
+
+.empty-cart .leyenda-1 {
+  font-family: Mali;
+  font-size: 24px;
+}
+
+.empty-cart .leyenda-2 {
+  font-family: Mali;
+  font-size: 20px;
+}
+
+.empty-cart .browse-button {
+  display: inline-block;
+  text-decoration: none;
+  padding: 6px 12px;
+  margin-top: 12px;
+  background-color: #304878;
+  color: white;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.empty-cart .browse-button:hover {
+  background-color: #0090ff;
+}
+
 @media screen and (min-width: 600px)
 {
   .cart-container {

@@ -9,6 +9,7 @@
 
 @section('content')
   <section class="cart-container">
+    @if (filled($books))
     <h2>Este es tu carrito, {{ auth()->user()->first_name }}</h2>
 
     <!-- los encabezados -->
@@ -35,6 +36,7 @@
     <form action="" method="post" id="cart-data" style="display: none">
       @csrf
     </form>
+    @endif
 
     <!-- los items del carrito -->
     @forelse ($books as $book)
@@ -54,7 +56,7 @@
           <h3>$ {{ number_format($book->price, 2) }}</h3>
         </div>
         <div class="item-qty row-height-sm flex-center">
-          <input type="number" min="0" max="10" name="quantity-{{ $book->id }}" value="{{ $book->pivot->quantity }}" form="cart-data">
+          <input type="number" min="0" max="10" name="quantity-{{ $book->id }}" value="{{ $book->pivot->quantity }}" maxlength="2" form="cart-data">
         </div>
       </div>
       <div class="cart-col">
@@ -67,8 +69,17 @@
       </div>
     </article>
     @empty
+    <div class="empty-cart">
+      <img src="{{ asset('img/empty-cart.png') }}" alt="Carrito vacío">
+      <div class="leyenda-1">Tu carrito está vacío :(</div>
+      <div class="leyenda-2">No te preocupes {{ auth()->user()->first_name }},</div>
+      <div class="leyenda-2">podés volver más tarde.</div>
+      <div class="leyenda-2">Mientras tanto...</div>
+      <a class="browse-button" href="{{ url('/') }}">Seguí buscando</a>
+    </div>
     @endforelse
 
+    @if (filled($books))
     <!-- los totales -->
     <div class="cart-footer">
       <div>
@@ -84,5 +95,6 @@
       <a href="{{ url('cart/checkout') }}" class="buy-button" onclick="event.preventDefault(); document.querySelector('#cart-data').setAttribute('action', '/cart/checkout'); document.querySelector('#cart-data').submit();">Resumen de compra</a>
       <a href="{{ url('cart/update') }}" class="update-button" onclick="event.preventDefault(); document.querySelector('#cart-data').setAttribute('action', '/cart/update'); document.querySelector('#cart-data').submit();">Actualizar carrito</a>
     </div>
+    @endif
   </section>
 @endsection
