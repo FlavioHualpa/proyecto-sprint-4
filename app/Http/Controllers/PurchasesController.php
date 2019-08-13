@@ -88,7 +88,35 @@ class PurchasesController extends Controller
      */
     public function show($id)
     {
-        //
+
+    }
+
+
+   public function detailedPurchase($id)
+   {
+     $genres = Genre::orderBy('name')->get();
+     $purchase = Purchase::find($id);
+     $books = Purchase::find($id)->books->all();
+     return view('detailedPurchase', [
+       'purchase' => $purchase,
+       'books' => $books,
+       'genres' => $genres
+       ]
+     );
+   }
+
+    public function listPurchases()
+    {
+        $user = auth()->user();
+        $purchases = $user->purchases->all();
+
+        // los géneros son para el header
+        $genres = Genre::orderBy('name')->get();
+
+        return view('purchases', [
+          'purchases' => $purchases,
+          'genres' => $genres
+        ]);
     }
 
     /**

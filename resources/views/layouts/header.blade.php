@@ -35,6 +35,7 @@
           <button type="submit"><i class="fas fa-search"></i></button>
         </form>
       </div>
+
       @if (Auth::check())
         <div>
           <div id="user-options">
@@ -86,6 +87,7 @@
             edite su perfil
           </a>
         </li>
+
         @if (auth()->check() && auth()->user()->role == 'admin')
         <li>
           <a href="/admin">
@@ -94,19 +96,20 @@
           </a>
         </li>
         @else
-          <li>
-            <a href="/user/listFavorites">
-              <i class="fas fa-bookmark"></i>
-              mis favoritos
-            </a>
-          </li>
-          <li>
-            <a href="/user/purchases">
-              <i class="fas fa-shopping-basket"></i>
-              mis compras
-            </a>
-          </li>
-        @endif
+        <li>
+          <a href="/user/listFavorites">
+            <i class="fas fa-bookmark"></i>
+            mis favoritos
+          </a>
+        </li>
+        <li>
+          <a href="/user/purchases">
+            <i class="fas fa-shopping-basket"></i>
+            mis compras
+          </a>
+        </li>
+      @endif
+
         <li>
           <a href="/logout">
             <i class="fas fa-sign-out-alt"></i>

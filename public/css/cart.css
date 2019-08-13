@@ -9,6 +9,13 @@
   width: 350px;
 }
 
+.purchase-container {
+  font-family: Mali;
+  text-align: center;
+  margin: 40px auto;
+  width: 350px;
+}
+
 .cart-container h2 {
   text-align: left;
   font-size: 30px;
@@ -16,7 +23,18 @@
   margin-bottom: 30px;
 }
 
+.purchase-container h2 {
+  text-align: left;
+  font-size: 26px;
+  margin-left: 16px;
+  margin-bottom: 30px;
+}
+
 .cart-container h4 {
+  margin-bottom: 8px;
+}
+
+.purchase-container h4 {
   margin-bottom: 8px;
 }
 
@@ -32,6 +50,16 @@
 }
 
 .cart-header {
+  display: none;
+  overflow: hidden;
+  padding: 5px 0 0 0;
+  background-color: rgba(240, 240, 220, 0.6);
+  color: #806000;
+  border-bottom: 1px solid #e0e0f0;
+  margin-bottom: 20px;
+}
+
+.purchase-header {
   display: none;
   overflow: hidden;
   padding: 5px 0 0 0;
@@ -87,14 +115,18 @@
   background-color: #a0a0a0;
 }
 
+.item-date,
+.item-invoice,
 .item-image,
 .item-title,
 .item-price,
 .item-qty,
 .item-subtotal,
-.item-remove {
+.item-remove,
+.purch-search {
   float: left;
 }
+
 
 .row-height {
   height: 180px;
@@ -114,6 +146,11 @@
   width: 150px;
 }
 
+.item-date,
+.item-invoice {
+  width: 120px;
+}
+
 .item-image img {
   height: 180px;
 }
@@ -126,7 +163,8 @@
 
 .item-price,
 .item-qty,
-.item-remove {
+.item-remove,
+.purch-search {
   width: 100px;
 }
 
@@ -147,7 +185,7 @@
   width: 150px;
 }
 
-.item-remove a {
+.item-remove a, .purch-search a, .back-home a {
   text-decoration: none;
   padding: 6px 12px;
   background-color: #304878;
@@ -156,7 +194,13 @@
   transition: 0.3s;
 }
 
-.item-remove a:hover {
+
+
+
+.purch-search a, .back-home a {
+  margin-bottom: 5px;
+}
+.item-remove a:hover, .purch-search a:hover, .back-home a:hover {
   background-color: #0090ff;
 }
 
@@ -166,7 +210,14 @@
     width: 600px;
   }
 
+  .purchase-container {
+    width: 600px;
+  }
+
   .cart-header {
+    display: block;
+  }
+  .purchase-header {
     display: block;
   }
 
@@ -193,12 +244,21 @@
     width: 800px;
   }
 
+  .purchase-container {
+    width: 600px;
+  }
+
+
   .item-subtotal {
     display: flex;
   }
 
   .row-height-sm {
     height: 180px;
+  }
+
+  .row-height-back {
+    height: 60px;
   }
 
   .display-style {

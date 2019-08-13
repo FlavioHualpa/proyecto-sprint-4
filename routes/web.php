@@ -79,6 +79,8 @@ Route::get('/languages', 'LanguagesController@index');
 Route::get('/publishers', 'PublishersController@index');
 
 Route::get('/purchases', 'PurchasesController@index');
+Route::get('/user/purchases', 'PurchasesController@listPurchases')->middleware('auth');
+Route::get('/user/purchases/{id}', 'PurchasesController@detailedPurchase')->middleware('auth');
 
 
 Route::get('/cart/add/{id}', 'CartsController@addProduct')->middleware('auth');
@@ -91,7 +93,6 @@ Route::get('/purchase/finalize', 'PurchasesController@store')->middleware('auth'
 
 Route::get('/user/profile')->middleware('auth');
 Route::get('/user/favorites')->middleware('auth');
-Route::get('/user/purchases')->middleware('auth');
 
 Route::get('/install', function(){
   Artisan::call('storage:link');

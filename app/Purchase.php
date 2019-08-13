@@ -14,4 +14,10 @@ class Purchase extends Model
     return $this->belongsToMany(Book::class)->withPivot(['quantity', 'price', 'subtotal']);
   }
 
+  public function user()
+  {
+    return $this->belongsTo(User::class);
+  }
+
+
 }
