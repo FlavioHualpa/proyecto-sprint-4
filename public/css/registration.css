@@ -216,6 +216,13 @@ label[for="avatar_button"] {
   transform: scale(1.4);
 }
 
+.user-avatar {
+  margin-top: 18px;
+  margin-bottom: -18px;
+  max-width: 200px;
+  display: block;
+}
+
 .avatar_button {
   text-align: center;
 }

@@ -11,10 +11,9 @@
   <section class="cart-container">
     <h2>Estos son tus libros favoritos, {{ auth()->user()->first_name }}</h2>
 
-
     <!-- los encabezados -->
     <div class="cart-header">
-      <div class="item-image">
+      <div class="item-image" style="margin-bottom: 0">
         <h4>Libro</h4>
       </div>
       <div class="item-title">
@@ -30,7 +29,9 @@
     @forelse ($books as $book)
     <div class="cart-row">
       <div class="item-image row-height">
-        <img src="{{ asset('storage/covers/' . $book->cover_img_url) }}" alt="{{ $book->title }}">
+        <a href="/book/{{ $book->id }}">
+          <img src="{{ asset('storage/covers/' . $book->cover_img_url) }}" alt="{{ $book->title }}">
+        </a>
       </div>
       <div class="item-title row-height flex-center">
         <h4>{{ $book->title }}</h4>
@@ -42,10 +43,10 @@
       </div>
       <div class="botones-favoritos">
         <div class="item-remove row-height flex-center">
-          <a href="{{ url('book/add/' . $book->id) }}">Agregar al <i class="fas fa-shopping-cart"></i></a>
+          <a href="{{ url('cart/add/' . $book->id) }}">Agregar al <i class="fas fa-shopping-cart"></i></a>
         </div>
         <div class="item-remove row-height flex-center">
-          <a href="{{ url('/user/deleteFavorites/' . $book->id) }}">Quitar</a>
+          <a href="{{ url('favorite/remove/' . $book->id) }}">Quitar</a>
         </div>
       </div>
     </div>

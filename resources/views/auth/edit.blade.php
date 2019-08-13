@@ -9,13 +9,13 @@
 @section('content')
   <div class="fondoLogYReg">
     <div id="panel-form">
-      <form class="registration" action="{{ route('register') }}" method="post" enctype="multipart/form-data">
+      <form class="registration" action="{{ url('/user/profile') }}" method="post" enctype="multipart/form-data">
         @csrf
         @error('submit')
         <p class="error-regist">{{ $message }}</p>
         @enderror
         <fieldset>
-          <legend>Modifique los datos </legend>
+          <legend>Datos del usuario</legend>
           <p>
             <label for="first_name">Nombre:</label>
             <input id="first_name" type="text" name="first_name" value="{{ old('first_name', $user->first_name) }}">
@@ -31,8 +31,12 @@
           <p class="error-regist"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>
           @enderror
           <p>
-            <label for="email">Email: {{ $user->email }}</label>
+            <label for="email">Email:</label>
+            <input id="email" type="text" name="email" value="{{ old('email', $user->email) }}">
           </p>
+          @error('email')
+          <p class="error-regist"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>
+          @enderror
           <p>
             <label for="country_id">País de Nacimiento:</label>
             <select name="country_id" id="country_id">
@@ -43,7 +47,7 @@
           </p>
           <p>
             <label for="birth_date">Fecha de Nacimiento:</label>
-            <input id="birth_date" type="date" name="birth_date" value="{{ old('birth_date', $user->birth_date) }}" required autocomplete="birth_date" autofocus">
+            <input id="birth_date" type="date" name="birth_date" value="{{ old('birth_date', $user->birth_date) }}" autocomplete="birth_date" autofocus>
           </p>
           @error('birth_date')
           <p class="error-regist"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>
@@ -65,9 +69,10 @@
           <p class="error-regist"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>
           @enderror
           <p>
-            <label for="avatar">Foto del perfil:</label>
+            <img src="/storage/avatars/{{ $user->avatar_url }}" alt="" class="user-avatar">
+            <label for="avatar">Elegir foto</label>
             <br>
-            <input id="avatar" type="file" name="avatar" accept=".jpg, .jpeg, .png, .bmp" value="{{ old('avatar', $book->avatar) }}">
+            <input id="avatar" type="file" name="avatar" accept=".jpg, .jpeg, .png, .bmp" value="{{ old('avatar', $user->avatar_url) }}">
           </p>
           @error('avatar')
           <p class="error-regist"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>

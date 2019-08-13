@@ -60,7 +60,7 @@ class RegisterController extends Controller
             'country_id' => ['required', 'exists:countries,id'],
             'birth_date' => ['required', 'before:-18 years'],
             'sex' => ['required', 'in:f,m'],
-            'avatar_url' => ['file', 'image'],
+            'avatar' => ['file', 'image'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'terms' => ['accepted'],
         ]);
@@ -100,7 +100,7 @@ class RegisterController extends Controller
         $url = basename($url);
       }
       else {
-        $url = null;
+        $url = ($data['sex'] == 'f' ? 'generic_female_avatar.png' : 'generic_male_avatar');
       }
 
       $user = User::create([
@@ -133,21 +133,4 @@ class RegisterController extends Controller
         ]
       );
     }
-
-    // protected function edit($id)
-    // {
-    //   $user = User::find($id);
-    //   $genres = Genre::orderBy('name')->get();
-    //   $countries = Country::orderBy('name')->get();
-    //
-    //   return view(
-    //     'auth.edit',
-    //     [ 'countries' => $countries,
-    //       'genres' => $genres,
-    //       'user' => $user
-    //     ]);
-    //   }
-
-
-
 }

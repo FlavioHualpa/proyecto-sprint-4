@@ -95,7 +95,7 @@
         </li>
         @else
           <li>
-            <a href="/user/listFavorites">
+            <a href="/user/favorites">
               <i class="fas fa-bookmark"></i>
               mis favoritos
             </a>

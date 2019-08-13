@@ -69,7 +69,7 @@
           <p class="error-regist"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>
           @enderror
           <p>
-            <label for="avatar">Foto del perfil:</label>
+            <label for="avatar">Foto del perfil</label>
             <br>
             <input id="avatar" type="file" name="avatar" accept=".jpg, .jpeg, .png, .bmp">
           </p>

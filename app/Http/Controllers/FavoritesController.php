@@ -90,17 +90,24 @@ class FavoritesController extends Controller
     {
       $user = auth()->user();
       $book = Book::find($id);
-      if($book->users() !== $user)
-      {
-        $book->users()->attach($user);
+
+      if ($book) {
+        $user->favorites()->attach(
+          $id,
+          [
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+          ]
+        );
       }
+      
       return back();
     }
 
     public function listFavorite()
     {
       $user = auth()->user();
-      $books = $user->books->all();
+      $books = $user->favorites->all();
 
       // los géneros son para el header
       $genres = Genre::orderBy('name')->get();
@@ -114,8 +121,7 @@ class FavoritesController extends Controller
     public function destroyFavorite($id)
     {
       $user = auth()->user();
-      $book = Book::find($id);
-      $book->users()->detach($user);
+      $user->favorites()->detach($id);
 
       return back();
     }
