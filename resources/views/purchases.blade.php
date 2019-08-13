@@ -19,10 +19,10 @@
     <div class="item-invoice">
       <h4>Factura Nro.</h4>
     </div>
-    <div class="item-qty-purch">
+    <div class="item-qty">
       <h4>Cantidad de libros</h4>
     </div>
-    <div class="item-subtotal-purch display-style">
+    <div class="item-subtotal display-style">
       <h4>Importe Total</h4>
     </div>
   </div>
@@ -43,14 +43,14 @@
       </div>
     </div>
     <div class="cart-col">
-      <div class="item-qty-purch purch-row-height-sm flex-center">
+      <div class="item-qty purch-row-height-sm flex-center">
         <h3>
           {{ $purchase->books()->sum('quantity') }}
         </h3>
       </div>
     </div>
     <div class="cart-col">
-      <div class="item-subtotal-purch purch-row-height-sm flex-center">
+      <div class="item-subtotal purch-row-height-sm flex-center">
         <h3>
           $ {{ number_format($purchase->books()->sum('subtotal'), 2) }}
         </h3>

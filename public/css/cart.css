@@ -193,10 +193,6 @@
   border-radius: 6px;
   transition: 0.3s;
 }
-
-
-
-
 .purch-search a, .back-home a {
   margin-bottom: 5px;
 }
@@ -300,7 +296,7 @@
   .purchase-header {
     display: block;
   }
-  .item-qty-purch, .item-subtotal-purch {
+  .item-qty, .item-subtotal {
     display: none;
   }
   .botones-favoritos {
