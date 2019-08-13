@@ -133,7 +133,7 @@
         <ul>
           <li>
             <div>
-              <a href="/about">Acerca de ¿Qué Leo?</a>
+              <p>Acerca de ¿Qué Leo?</p>
             </div>
           </li>
           <li>
