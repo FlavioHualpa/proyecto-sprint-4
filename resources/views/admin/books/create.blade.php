@@ -11,21 +11,21 @@
       @csrf
       <p>
         <label for="title">Título:</label>
-        <input type="text" name="title" value="">
+        <input type="text" name="title" value="{{ old('title') }}">
       </p>
       @error('title')
       <p class="error-regist"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>
       @enderror
       <p>
         <label for="total_pages">Páginas:</label>
-        <input type="number" name="total_pages" value="">
+        <input type="number" name="total_pages" value="{{ old('total_pages') }}">
       </p>
       @error('total_pages')
       <p class="error-regist"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>
       @enderror
       <p>
         <label for="price">Precio:</label>
-        <input type="number" name="price" value="">
+        <input type="number" name="price" value="{{ old('price') }}">
       </p>
       @error('price')
       <p class="error-regist"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>
@@ -97,21 +97,21 @@
       </p>
       <p>
         <label for="ranking">Ranking:</label>
-        <input type="number" name="ranking" value="">
+        <input type="number" name="ranking" value="{{ old('ranking') }}">
       </p>
       @error('ranking')
       <p class="error-regist"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>
       @enderror
       <p>
         <label for="resena">Reseña:</label>
-        <input type="text" name="resena" value="">
+        <input type="text" name="resena" value="{{ old('resena') }}">
       </p>
       @error('resena')
       <p class="error-regist"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>
       @enderror
       <p>
         <label for="isbn">I.S.B.N.:</label>
-        <input type="number" name="isbn" value="">
+        <input type="number" name="isbn" value="{{ old('isbn') }}">
       </p>
       @error('isbn')
       <p class="error-regist"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>

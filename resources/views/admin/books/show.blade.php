@@ -7,7 +7,7 @@
 
       <div class="detalle_principal">
         <div class="detalle_imagen">
-          <img src="{!! '/storage/covers/' . $book['cover_img_url'] !!}" alt="{{ $book['title'] }}">
+          <img src="{{ Storage::url($book->cover_img_url) }}" alt="{{ $book['title'] }}">
         </div>
         <div class="detalle_lateral">
           <h3>

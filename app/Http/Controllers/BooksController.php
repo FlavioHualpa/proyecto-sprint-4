@@ -96,8 +96,7 @@ class BooksController extends Controller
       'isbn' => 'unique:books,isbn|max:9999999999999'
   ]);
 
-      $url = $request->cover_img_url->store('/public/covers');
-      $url = basename($url);
+      $url = $request->cover_img_url->store('public/covers');
       $request->cover_img_url = $url;
 
       Book::create( [

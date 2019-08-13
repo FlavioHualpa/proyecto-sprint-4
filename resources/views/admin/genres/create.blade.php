@@ -11,7 +11,7 @@
       @csrf
       <p>
         <label for="name">Género:</label>
-        <input type="text" name="name" value="">
+        <input type="text" name="name" value="{{ old('name') }}">
       </p>
       @error('name')
       <p class="error-regist"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>
