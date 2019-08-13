@@ -97,7 +97,6 @@ Route::get('/favorite/remove/{id}', 'FavoritesController@destroyFavorite')->midd
 Route::get('/user/profile', 'Auth\EditProfileController@edit')->middleware('auth');
 Route::post('/user/profile', 'Auth\EditProfileController@update')->middleware('auth');
 Route::get('/user/favorites', 'FavoritesController@listFavorite')->middleware('auth');
-Route::get('/user/purchases', 'PurchasesController@index')->middleware('auth');
 
 Route::get('/install', function(){
   Artisan::call('storage:link');

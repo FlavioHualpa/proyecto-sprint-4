@@ -36,7 +36,6 @@
         </form>
       </div>
       @if (Auth::check())
-        <div>
           <div id="user-options">
             <div class="avatar" style="background-image: url('/storage/avatars/{{ Auth::user()->avatar_url }}')">
             </div>
@@ -56,7 +55,6 @@
               <span>{{ Auth::user()->carts[0]->books()->sum('quantity') }}</span>
             </a>
           </div>
-        </div>
       @else
         <div id="user">
           <a href="/login" class="user-login">
