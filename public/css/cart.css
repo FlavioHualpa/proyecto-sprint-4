@@ -300,7 +300,7 @@
   .purchase-header {
     display: block;
   }
-  .item-qty, .item-subtotal {
+  .item-qty-purch, .item-subtotal-purch {
     display: none;
   }
   .botones-favoritos {
