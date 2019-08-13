@@ -32,7 +32,7 @@ class EditProfileController extends Controller
     return Validator::make($data, [
       'first_name' => ['required', 'string', 'max:50'],
       'last_name' => ['required', 'string', 'max:50'],
-      'email' => ['required', 'string', 'email', 'max:80', 'unique:users'],
+      'email' => ['required', 'string', 'email', 'max:80', Rule::unique('users')->ignore(auth()->user()->id)],
       'country_id' => ['required', 'exists:countries,id'],
       'birth_date' => ['required', 'before:-18 years'],
       'sex' => ['required', 'in:f,m'],
