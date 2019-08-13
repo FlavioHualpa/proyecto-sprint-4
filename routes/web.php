@@ -24,7 +24,7 @@ Route::get('/books/search', 'BooksController@search');
 Route::get('/book/{id}', 'BooksController@bookDetail');
 Route::get('/book/add/{id}', 'CartsController@addProduct')->middleware('auth');
 Route::get('/book/addFavorite/{id}', 'FavoritesController@addFavorite')->middleware('auth');
-Route::get('/user/listFavorites', 'FavoritesController@listFavorite')->middleware('auth');
+//Route::get('/user/listFavorites', 'FavoritesController@listFavorite')->middleware('auth');
 Route::get('/user/deleteFavorites/{id}', 'FavoritesController@destroyFavorite');
 
 Route::get('/admin', 'BooksController@index')->middleware('role:admin');
@@ -78,7 +78,10 @@ Route::get('/languages', 'LanguagesController@index');
 
 Route::get('/publishers', 'PublishersController@index');
 
-// Route::get('/purchases', 'PurchasesController@index');
+Route::get('/purchases', 'PurchasesController@index');
+Route::get('/user/purchases', 'PurchasesController@listPurchases')->middleware('auth');
+Route::get('/user/purchases/{id}', 'PurchasesController@detailedPurchase')->middleware('auth');
+
 
 Route::get('/cart/add/{id}', 'CartsController@addProduct')->middleware('auth');
 Route::get('/cart/remove/{id}', 'CartsController@removeProduct')->middleware('auth');
@@ -94,7 +97,6 @@ Route::get('/favorite/remove/{id}', 'FavoritesController@destroyFavorite')->midd
 Route::get('/user/profile', 'Auth\EditProfileController@edit')->middleware('auth');
 Route::post('/user/profile', 'Auth\EditProfileController@update')->middleware('auth');
 Route::get('/user/favorites', 'FavoritesController@listFavorite')->middleware('auth');
-Route::get('/user/purchases', 'PurchasesController@index')->middleware('auth');
 
 Route::get('/install', function(){
   Artisan::call('storage:link');

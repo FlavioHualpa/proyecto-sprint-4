@@ -35,6 +35,7 @@
           <button type="submit"><i class="fas fa-search"></i></button>
         </form>
       </div>
+
       @if (Auth::check())
         <div>
           <div id="user-options">
@@ -86,6 +87,7 @@
             edite su perfil
           </a>
         </li>
+
         @if (auth()->check() && auth()->user()->role == 'admin')
         <li>
           <a href="/admin">

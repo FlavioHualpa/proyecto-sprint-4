@@ -78,6 +78,7 @@ html {
   margin: 5%;
 }
 
+/* para pantallas de PC */
 @media (min-width: 768px)
 {
   #contenedor {
@@ -96,6 +97,40 @@ html {
   #footer nav ul li:nth-child(2) {
     display: block;
   }
+}
+
+/* para tablets */
+@media only screen and (max-width: 768px) and (min-width: 420px)
+{
+  #contenedor {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+    .banner {
+      object-fit: contain;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .separador {
+      height: 0;
+    }
+
+}
+
+/* para celulares */
+@media only screen and (max-width: 420px)
+{
+  #contenedor {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .separador {
+    height: 0;
+  }
+
 }
 
 /*

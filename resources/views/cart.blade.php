@@ -43,7 +43,9 @@
     <article class="cart-row">
       <div class="cart-col">
         <div class="item-image row-height">
-          <img src="{{ asset('storage/covers/' . $book->cover_img_url) }}" alt="{{ $book->title }}">
+          <a href="/book/{{ $book->id }}">
+            <img src="{{ asset('storage/covers/' . $book->cover_img_url) }}" alt="{{ $book->title }}">
+          </a>
         </div>
         <div class="item-title row-height flex-center">
           <h4>{{ $book->title }}</h4>
