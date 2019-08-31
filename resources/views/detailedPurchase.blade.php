@@ -46,7 +46,7 @@
       </div>
       <div class="cart-col">
         <div class="item-price row-height-sm flex-center">
-          <h3>$ {{ number_format($book->price, 2) }}</h3>
+          <h3>$ {{ number_format($book->price, 2, ',', '.') }}</h3>
         </div>
         <div class="item-qty row-height-sm flex-center">
           <h3>{{ $book->pivot->quantity }}</h3>
@@ -54,7 +54,7 @@
       </div>
       <div class="cart-col">
         <div class="item-subtotal row-height-sm flex-center">
-          <h3>$ {{ number_format($book->price * $book->pivot->quantity, 2) }}</h3>
+          <h3>$ {{ number_format($book->price * $book->pivot->quantity, 2, ',', '.') }}</h3>
         </div>
       </div>
     </article>
@@ -67,7 +67,7 @@
         <h3>Cantidad de libros: {{ $purchase->books()->sum('quantity') }}</h3>
       </div>
       <div>
-        <h3>Importe total: $ {{ number_format($purchase->books()->sum('subtotal'), 2) }}</h3>
+        <h3>Importe total: $ {{ number_format($purchase->books()->sum('subtotal'), 2, ',', '.') }}</h3>
       </div>
     </div>
 

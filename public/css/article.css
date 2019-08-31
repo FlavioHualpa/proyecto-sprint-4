@@ -51,7 +51,8 @@
   border-radius: 4px;
 }
 
-.prodsSection article .pie-de-articulo a {
+.prodsSection article .pie-de-articulo a,
+.prodsSection article .pie-de-articulo button {
   text-decoration: none;
   padding: 6px 15px;
   background-color: #304878;
@@ -63,7 +64,13 @@
   /* text-transform: uppercase; */
 }
 
-.prodsSection article .pie-de-articulo a:hover {
+.prodsSection article .pie-de-articulo button {
+  border: none;
+  cursor: pointer;
+}
+
+.prodsSection article .pie-de-articulo a:hover,
+.prodsSection article .pie-de-articulo button:hover {
   background-color: #0090ff;
 }
 

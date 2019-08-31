@@ -43,7 +43,12 @@
           </div>
           <div class="pie-de-articulo">
             <span>{{ '$ ' . $libro['price'] }}</span>
-            <a href="{{ '/cart/add/' . $libro->id }}">agregar al <i class="fas fa-shopping-cart"></i></a>
+            {{-- <a href="{{ '/cart/add/' . $libro->id }}">agregar al <i class="fas fa-shopping-cart"></i></a> --}}
+            <form action="{{ url('/cart/add') }}" method="post">
+              @csrf
+              <input type="hidden" name="book_id" value="{{ $libro->id }}">
+              <button type="submit">agregar al <i class="fas fa-shopping-cart"></i></button>
+            </form>
           </div>
         </article>
         @endforeach
@@ -79,7 +84,12 @@
           </div>
           <div class="pie-de-articulo">
             <span>{{ '$ ' . $libro['price'] }}</span>
-            <a href="{{ '/cart/add/' . $libro->id }}">agregar al <i class="fas fa-shopping-cart"></i></a>
+            {{-- <a href="{{ '/cart/add/' . $libro->id }}">agregar al <i class="fas fa-shopping-cart"></i></a> --}}
+            <form action="{{ url('/cart/add') }}" method="post">
+              @csrf
+              <input type="hidden" name="book_id" value="{{ $libro->id }}">
+              <button type="submit">agregar al <i class="fas fa-shopping-cart"></i></button>
+            </form>
           </div>
         </article>
         @endforeach

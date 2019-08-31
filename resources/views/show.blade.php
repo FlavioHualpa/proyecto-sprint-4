@@ -34,7 +34,7 @@
               Ranking: # {{ $book['ranking'] }}
             </h6>
             <h5>
-              $ {{ number_format($book->price, 2) }}
+              $ {{ number_format($book->price, 2, ',', '.') }}
             </h5>
             <h6>
               Reseñas del libro:
@@ -43,11 +43,20 @@
               {{ $book['resena'] }}
             </p>
             <br>
-            <a href="{{ url('book/addFavorite/' . $book->id) }}">
+            <form action="{{ url('favorite/add') }}" method="post" id="add-fav-{{ $book->id }}-form">
+              @csrf
+              <input type="hidden" name="book_id" value="{{ $book->id }}">
+            </form>
+            <a href="{{ url('favorite/add') }}" onclick="event.preventDefault(); document.querySelector('#add-fav-{{ $book->id }}-form').submit();">
+              <i class="fas fa-bookmark"></i>
               Agregar a mis libros
             </a>
             <br>
-            <a href="{{ url('book/add/' . $book->id) }}">Agregar al <i class="fas fa-shopping-cart"></i></a>
+            <form action="{{ url('cart/add') }}" method="post">
+              @csrf
+              <input type="hidden" name="book_id" value="{{ $book->id }}">
+              <button type="submit">agregar al <i class="fas fa-shopping-cart"></i></button>
+            </form>
           </div>
         </div>
         <div class="datos_detallados">

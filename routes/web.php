@@ -82,17 +82,27 @@ Route::get('/purchases', 'PurchasesController@index');
 Route::get('/user/purchases', 'PurchasesController@listPurchases')->middleware('auth');
 Route::get('/user/purchases/{id}', 'PurchasesController@detailedPurchase')->middleware('auth');
 
+// cambiamos la ruta de get a post
+// Route::get('/cart/add/{id}', 'CartsController@addProduct')->middleware('auth');
+Route::post('/cart/add', 'CartsController@addProduct')->middleware('auth');
 
-Route::get('/cart/add/{id}', 'CartsController@addProduct')->middleware('auth');
-Route::get('/cart/remove/{id}', 'CartsController@removeProduct')->middleware('auth');
+// cambiamos la ruta de get a delete
+// Route::get('/cart/remove/{id}', 'CartsController@removeProduct')->middleware('auth');
+Route::delete('/cart/removeItem', 'CartsController@removeProduct')->middleware('auth');
+
 Route::get('/cart/show', 'CartsController@index')->middleware('auth');
 Route::post('/cart/update', 'CartsController@update')->middleware('auth');
 Route::post('/cart/checkout', 'CartsController@checkout')->middleware('auth');
 
 Route::get('/purchase/finalize', 'PurchasesController@store')->middleware('auth');
 
-Route::get('/favorite/add/{id}', 'FavoritesController@addFavorite')->middleware('auth');
-Route::get('/favorite/remove/{id}', 'FavoritesController@destroyFavorite')->middleware('auth');
+// cambiamos la ruta de get a post
+// Route::get('/favorite/add/{id}', 'FavoritesController@addFavorite')->middleware('auth');
+Route::post('/favorite/add', 'FavoritesController@addFavorite')->middleware('auth');
+
+// cambiamos la ruta de get a delete
+// Route::get('/favorite/remove/{id}', 'FavoritesController@destroyFavorite')->middleware('auth');
+Route::delete('/favorite/remove', 'FavoritesController@destroyFavorite')->middleware('auth');
 
 Route::get('/user/profile', 'Auth\EditProfileController@edit')->middleware('auth');
 Route::post('/user/profile', 'Auth\EditProfileController@update')->middleware('auth');

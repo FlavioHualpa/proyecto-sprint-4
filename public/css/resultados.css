@@ -18,16 +18,20 @@
 }
 
 .page-item {
-  font-family: 'Roboto Condensed';
-  font-weight: bold;
-  list-style-type: none;
-  float: left;
-  border-top: 1px solid #a0a0d0;
-  border-left: 1px solid #a0a0d0;
-  border-bottom: 1px solid #a0a0d0;
-  background-color: #e8ffff;
-  padding: 5px 12px;
-  cursor: pointer;
+   font-family: 'Roboto Condensed';
+   font-weight: bold;
+   list-style-type: none;
+   float: left;
+   border-top: 1px solid #a0a0d0;
+   border-left: 1px solid #a0a0d0;
+   border-bottom: 1px solid #a0a0d0;
+   background-color: #e8ffff;
+   padding: 5px 12px;
+   cursor: pointer;
+}
+
+.active {
+   background-color: #8ce8c5;
 }
 
 .page-item:first-child {
@@ -101,7 +105,8 @@
    display: block;
 }
 
-.item-resultado span a {
+.item-resultado span a,
+.item-resultado form button {
    text-decoration: none;
    padding: 6px 15px;
    background-color: #304878;
@@ -112,7 +117,13 @@
    transition: 0.3s;
 }
 
-.item-resultado span a:hover {
+.item-resultado form button {
+   border: none;
+   cursor: pointer;
+}
+
+.item-resultado span a:hover,
+.item-resultado form button:hover {
    background-color: #0090ff;
 }
 
@@ -123,6 +134,10 @@
    color: #0000d0;
    margin-top: 8px;
    clear: both;
+}
+
+.item-resultado a:hover {
+   color: #d00000;
 }
 
 .sin-resultados {

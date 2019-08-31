@@ -54,19 +54,25 @@
         </div>
       </div>
       <div class="cart-col">
-        <div class="item-price row-height-sm flex-center">
-          <h3>$ {{ number_format($book->price, 2) }}</h3>
+        <div class="item-price row-height flex-center">
+          <h3>$ {{ number_format($book->price, 2, ',', '.') }}</h3>
         </div>
-        <div class="item-qty row-height-sm flex-center">
-          <input type="number" min="0" max="10" name="quantity-{{ $book->id }}" value="{{ $book->pivot->quantity }}" maxlength="2" form="cart-data">
+        <div class="item-qty row-height flex-center">
+          <input type="number" min="1" max="10" name="quantity-{{ $book->id }}" value="{{ $book->pivot->quantity }}" maxlength="2" form="cart-data">
         </div>
       </div>
       <div class="cart-col">
-        <div class="item-subtotal row-height-sm flex-center">
-          <h3>$ {{ number_format($book->price * $book->pivot->quantity, 2) }}</h3>
+        <div class="item-subtotal row-height flex-center">
+          <h3>$ {{ number_format($book->price * $book->pivot->quantity, 2, ',', '.') }}</h3>
         </div>
-        <div class="item-remove row-height-sm flex-center">
-          <a href="{{ url('cart/remove/' . $book->id) }}">Quitar</a>
+        <div class="item-remove row-height flex-center">
+          {{-- <a href="{{ url('cart/remove/' . $book->id) }}">Quitar</a> --}}
+          <form action="{{ url('cart/removeItem') }}" method="POST">
+            @csrf
+            @method('delete')
+            <input type="hidden" name="book_id" value="{{ $book->id }}">
+            <button type="submit">Quitar</button>
+          </form>
         </div>
       </div>
     </article>
@@ -88,7 +94,7 @@
         <h3>Cantidad de libros: {{ $totalBooks }}</h3>
       </div>
       <div>
-        <h3>Importe total: $ {{ number_format($totalAmount, 2) }}</h3>
+        <h3>Importe total: $ {{ number_format($totalAmount, 2, ',', '.') }}</h3>
       </div>
     </div>
 

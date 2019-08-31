@@ -179,13 +179,16 @@ class CartsController extends Controller
         //
     }
 
-    public function addProduct($id) {
-
+    public function addProduct(Request $request)
+    {
       // obtengo el id del usuario logueado
       $userId = auth()->user()->id;
 
+      // obtengo el id del libro que quiero agregar al carrito
+      $bookId = $request->book_id;
+
       // obtengo el libro que quiero agregar al carrito
-      $book = Book::find($id);
+      $book = Book::find($bookId);
 
       // si el libro no existe no lo agrego
       if ($book) {
@@ -196,14 +199,14 @@ class CartsController extends Controller
 
         // consulto si el libro que el usuario quiere
         // agregar al carrito existe en el carrito
-        $inCartProduct = $cart->books()->where('book_id', $id)->get();
+        $inCartProduct = $cart->books()->where('book_id', $bookId)->get();
 
         // si no existe agrego una unidad, si existe
         // aumento la cantidad y el subtotal
         if ($inCartProduct->count() == 0)
         {
             $cart->books()->attach(
-            $id,
+            $bookId,
             [
               'quantity' => 1,
               'price' => $book->price,
@@ -218,7 +221,7 @@ class CartsController extends Controller
           $quantity = $inCartProduct[0]->pivot->quantity;
           $cart->books()->syncWithoutDetaching(
             [
-              $id => [
+              $bookId => [
                 'quantity' => $quantity + 1,
                 'price' => $book->price,
                 'subtotal' => ($quantity + 1) * $book->price,
@@ -234,18 +237,19 @@ class CartsController extends Controller
       return back();
     }
 
-    public function removeProduct($id) {
+    public function removeProduct(Request $request) {
 
       // obtengo el id del usuario logueado
       $userId = auth()->user()->id;
 
       // obtengo el carrito del usuario logueado
       // el id del carrito es igual al id del usuario
-      $cart = Cart::find($userId);
+      // $cart = Cart::find($userId);
+      $cart = auth()->user()->carts[0];
 
-      // elimino el libro (con el id pasado a la función)
-      // del carrito
-      $cart->books()->detach($id);
+      // elimino el libro del carrito (con el id pasado
+      // a la función desde el formulario del botón quitar)
+      $cart->books()->detach($request->book_id);
 
       // regresamos a la ruta anterior para continuar donde estábamos
       return back();

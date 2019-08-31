@@ -86,22 +86,28 @@ class FavoritesController extends Controller
         //
     }
 
-    public function addFavorite($id)
+    public function addFavorite(Request $request)
     {
       $user = auth()->user();
-      $book = Book::find($id);
+      $bookId = $request->book_id;
+      $book = Book::find($bookId);
 
+      // solo agrego el libro a los favoritos si existe en la base
       if ($book) {
-        $user->favorites()->attach(
-          $id,
-          [
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
-          ]
-        );
+        // y si no es ya un favorito del usuario
+        if ($user->favorites()->where('book_id', $bookId)->count() == 0) {
+          $user->favorites()->attach(
+            $bookId,
+            [
+              'created_at' => date('Y-m-d H:i:s'),
+              'updated_at' => date('Y-m-d H:i:s'),
+            ]
+          );
+        }
       }
       
-      return back();
+      // return back();
+      return $this->listFavorite();
     }
 
     public function listFavorite()
@@ -118,10 +124,10 @@ class FavoritesController extends Controller
       ]);
     }
 
-    public function destroyFavorite($id)
+    public function destroyFavorite(Request $request)
     {
       $user = auth()->user();
-      $user->favorites()->detach($id);
+      $user->favorites()->detach($request->book_id);
 
       return back();
     }

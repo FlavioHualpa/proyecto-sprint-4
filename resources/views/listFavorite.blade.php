@@ -39,14 +39,25 @@
         <h5>{{ $book->publisher->name }}</h5>
       </div>
       <div class="item-price row-height flex-center">
-        <h3>$ {{ number_format($book->price, 2) }}</h3>
+        <h3>$ {{ number_format($book->price, 2, ',', '.') }}</h3>
       </div>
       <div class="botones-favoritos">
         <div class="item-remove row-height flex-center">
-          <a href="{{ url('cart/add/' . $book->id) }}">Agregar al <i class="fas fa-shopping-cart"></i></a>
+          {{-- <a href="{{ url('cart/add' . $book->id) }}">Agregar al <i class="fas fa-shopping-cart"></i></a> --}}
+          <form action="{{ url('cart/add') }}" method="post">
+            @csrf
+            <input type="hidden" name="book_id" value="{{ $book->id }}">
+            <button type="submit">agregar al <i class="fas fa-shopping-cart"></i></button>
+          </form>
         </div>
         <div class="item-remove row-height flex-center">
-          <a href="{{ url('favorite/remove/' . $book->id) }}">Quitar</a>
+          {{-- <a href="{{ url('favorite/remove'.$book->id) }}">Quitar</a> --}}
+          <form action="{{ url('favorite/remove') }}" method="post">
+            @csrf
+            @method('delete')
+            <input type="hidden" name="book_id" value="{{ $book->id }}">
+            <button type="submit">Quitar</button>
+          </form>
         </div>
       </div>
     </div>

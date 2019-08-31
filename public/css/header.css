@@ -13,6 +13,7 @@
   color: White;
   font-family: 'Mali';
   font-weight: normal;
+  font-style: italic;
   padding-bottom: 30px;
   text-align: center;
 }
@@ -162,10 +163,11 @@
 }
 
 #user .user-login {
-   padding: 12px;
+   padding: 8px 14px;
    margin-right: 10px;
    border-radius: 6px;
    background-color: white;
+   border: 2px solid white;
    color: #000080;
    transition: 0.3s;
 }
@@ -175,7 +177,7 @@
 }
 
 #user .user-register {
-   padding: 12px;
+   padding: 8px 14px;
    margin-right: 20px;
    background-color: #0000c0;
    border: 2px solid #7070c0;
@@ -312,13 +314,13 @@
    transition: 0.3s;
 }
 
-@media (min-width: 768px)
+@mmedia (min-width: 768px)
 {
 
 }
 
 /* para tablets */
-@media only screen and (max-width: 768px) and (min-width: 420px)
+@mmedia only screen and (max-width: 768px) and (min-width: 420px)
 {
   #boton-generos {
     display: none;
@@ -339,14 +341,14 @@
 }
 
   #user {
-    margin-top: 12px;
+    margin-top: 0px;
     display: flex;
     justify-content: flex-end;
   }
 
 
 /* para celulares */
-@media only screen and (max-width: 420px)
+@mmedia only screen and (max-width: 420px)
 {
   #boton-generos {
     display: none;

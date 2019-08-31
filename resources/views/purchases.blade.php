@@ -22,14 +22,14 @@
     <div class="item-qty">
       <h4>Cantidad de libros</h4>
     </div>
-    <div class="item-subtotal display-style">
+    <div class="item-subtotal">
       <h4>Importe Total</h4>
     </div>
   </div>
   @forelse ($purchases as $purchase)
   <article class="cart-row">
     <div class="cart-col">
-      <div class="item-date purch-row-height flex-center">
+      <div class="item-date purch-row-height-sm flex-center">
         <h3>
           {{ \Carbon\Carbon::parse($purchase->created_at)->format('d-m-y') }}
         </h3>
@@ -52,7 +52,7 @@
     <div class="cart-col">
       <div class="item-subtotal purch-row-height-sm flex-center">
         <h3>
-          $ {{ number_format($purchase->books()->sum('subtotal'), 2) }}
+          $ {{ number_format($purchase->books()->sum('subtotal'), 2, ',', '.') }}
         </h3>
       </div>
     </div>
