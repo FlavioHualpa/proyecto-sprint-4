@@ -56,7 +56,7 @@
               -- si el libro ya es favorito del usuario muestro
               -- un link para poder quitarlo de la lista
             --}}
-            @if (Auth::user()->hasFavorite($book))
+            @if (Auth::user() && Auth::user()->hasFavorite($book))
               <a href="{{ url('favorite/remove') }}" onclick="event.preventDefault(); document.querySelector('#remove-fav-{{ $book->id }}-form').submit();">
                 <i class="fas fa-bookmark"></i>
                 Quitar de mis libros
