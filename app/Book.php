@@ -45,7 +45,11 @@ class Book extends Model
 
   public function favoriteOfUsers()
   {
-      return $this->belongsToMany(User::class, 'favorites', 'book_id', 'user_id');
+    return $this->belongsToMany(User::class, 'favorites', 'book_id', 'user_id');
   }
 
+  public function isFavoriteOfUser(User $user)
+  {
+    return $user->favorites->contains('id', $user->id);
+  }
 }

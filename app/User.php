@@ -57,4 +57,9 @@ class User extends Authenticatable
     {
       return $this->hasMany(Purchase::class);
     }
+
+    public function hasFavorite(Book $book)
+    {
+      return $this->favorites->contains('id', $book->id);
+    }
 }

@@ -43,20 +43,44 @@
               {{ $book['resena'] }}
             </p>
             <br>
+
+            {{-- formulario para agregar el libro a los favoritos --}}
             <form action="{{ url('favorite/add') }}" method="post" id="add-fav-{{ $book->id }}-form">
               @csrf
               <input type="hidden" name="book_id" value="{{ $book->id }}">
             </form>
-            <a href="{{ url('favorite/add') }}" onclick="event.preventDefault(); document.querySelector('#add-fav-{{ $book->id }}-form').submit();">
-              <i class="fas fa-bookmark"></i>
-              Agregar a mis libros
-            </a>
+
+            {{-- formulario para agregar el libro a los favoritos --}}
+            <form action="{{ url('favorite/remove') }}" method="post" id="remove-fav-{{ $book->id }}-form">
+              @csrf
+              @method('delete')
+              <input type="hidden" name="book_id" value="{{ $book->id }}">
+            </form>
+
+            {{-- 
+              -- si el libro ya es favorito del usuario muestro
+              -- un link para poder quitarlo de la lista
+            --}}
+            @if (Auth::user()->hasFavorite($book))
+              <a href="{{ url('favorite/remove') }}" onclick="event.preventDefault(); document.querySelector('#remove-fav-{{ $book->id }}-form').submit();">
+                <i class="fas fa-bookmark"></i>
+                Quitar de mis libros
+              </a>
+            @else
+              <a href="{{ url('favorite/add') }}" onclick="event.preventDefault(); document.querySelector('#add-fav-{{ $book->id }}-form').submit();">
+                <i class="fas fa-bookmark"></i>
+                Agregar a mis libros
+              </a>
+            @endif
             <br>
+
+            {{-- formulario para agregar el libro al carrito --}}
             <form action="{{ url('cart/add') }}" method="post">
               @csrf
               <input type="hidden" name="book_id" value="{{ $book->id }}">
               <button type="submit">agregar al <i class="fas fa-shopping-cart"></i></button>
             </form>
+
           </div>
         </div>
         <div class="datos_detallados">

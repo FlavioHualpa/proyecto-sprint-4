@@ -29,13 +29,15 @@ class BooksController extends Controller
       ->limit(6)
       ->get();
 
-      $masVendidos = Book::orderBy('ranking', 'asc')
-      ->orderBy('title')
-      ->limit(6)
-      ->get();
+      $masVendidos = Book::select(
+        '*',
+        DB::raw('(SELECT COUNT(*) FROM book_purchase WHERE book_id = books.id) AS sold'))
+        ->orderBy('sold', 'desc')
+        ->orderBy('title')
+        ->limit(6)
+        ->get();
 
-      $genres = Genre::orderBy('name')
-      ->get();
+      $genres = Genre::orderBy('name')->get();
 
       return view('/index', [
         'novedades' => $novedades,
