@@ -20,7 +20,12 @@
     <span class="checkout-col-rgt">$ {{ number_format($totalAmount, 2) }}</span>
     <br>
     <br>
-    <a href="{{ url('purchase/finalize') }}" class="finalize-button">Finalizar la compra</a>
+    <a href="{{ url('purchase/pay') }}" class="finalize-button">Pagar y finalizar la compra</a>
     <a href="{{ url('cart/show') }}" class="back-button">Volver al carrito</a>
   </section>
 @endsection
+
+@push('additional-js')
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+  <script src="{{ asset('js/checkout.js') }}"></script>
+@endpush

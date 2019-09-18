@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>¿Qué Leo?</title>
-  <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto+Condensed:400,400i|Mali:500|Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i|Mali:500|Pacifico&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   @yield('styles')
 </head>
@@ -160,6 +160,6 @@
   </div>
   <script src="/js/header.js">
   </script>
-  @stack('aditional-js')
+  @stack('additional-js')
 </body>
 </html>

@@ -106,3 +106,8 @@
     @endif
   </section>
 @endsection
+
+@push('additional-js')
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+  <script src="{{ asset('js/cart.js') }}"></script>
+@endpush

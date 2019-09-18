@@ -94,6 +94,8 @@ Route::get('/cart/show', 'CartsController@index')->middleware('auth');
 Route::post('/cart/update', 'CartsController@update')->middleware('auth');
 Route::post('/cart/checkout', 'CartsController@checkout')->middleware('auth');
 
+Route::post('/purchase/notify', 'PurchasesController@notify')->middleware('auth');
+Route::get('/purchase/pay', 'PurchasesController@pay')->middleware('auth');
 Route::get('/purchase/finalize', 'PurchasesController@store')->middleware('auth');
 
 // cambiamos la ruta de get a post

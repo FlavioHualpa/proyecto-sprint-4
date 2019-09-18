@@ -32,6 +32,57 @@ class PurchasesController extends Controller
         //
     }
 
+    // Redirigimos a Mercado Pago para que el comprador
+    // realice el pago de su compra
+    // Si el pago resulta exitoso mostramos el aviso
+    public function pay()
+    {
+      // Agrega credenciales
+      \MercadoPago\SDK::setAccessToken('TEST-4014737365882020-091400-cd190a1ed89ba49e53e574c0f7b7d610-470904988');
+      // este usuario de prueba lo creé el 13/9/19 con mi cuenta de MP
+
+      // Crea un objeto de preferencia
+      $preference = new \MercadoPago\Preference();
+
+      $cart = auth()->user()->carts()->first();
+      $allItems = [];
+
+      foreach ($cart->books as $book) {
+        $item = new \MercadoPago\Item;
+        $item->title = $book->title;
+        $item->quantity = $book->pivot->quantity;
+        $item->unit_price = $book->pivot->price;
+        $item->picture_url = $book->cover_img_url;
+        $item->currency_id = 'ARS';
+        $allItems[] = $item;
+      }
+
+      $preference->items = $allItems;
+      
+      $preference->back_urls = [
+        'success' => url('/purchase/finalize')
+      ];
+
+      $payer = new \MercadoPago\Payer;
+      $payer->name = auth()->user()->first_name;
+      $payer->surname = auth()->user()->last_name;
+      $payer->email = auth()->user()->email;
+      $payer->date_created = date('Y-m-d H:i:s');
+
+      $preference->payer = $payer;
+      // $preference->notification_url = url('/purchase/notify');
+      $preference->save();
+
+      return redirect($preference->init_point);
+    }
+
+    // Este método se ejecuta cuando recibimos una
+    // notificación de Mercado Pago sobre nuestro pago
+    public function notify(Request $request)
+    {
+      dd($request);
+    }
+  
     /**
      * Store a newly created resource in storage.
      *

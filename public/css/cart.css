@@ -249,6 +249,10 @@
   background-color: #0090ff;
 }
 
+.sweetalert {
+  font-family: 'Roboto Condensed';
+}
+
 
 
 @media (min-width: 768px)
